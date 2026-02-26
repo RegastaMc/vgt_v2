@@ -1,0 +1,155 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./src/lib/prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id       String  @id @default(cuid()) @map("_id")
+  parentID String?
+
+  name               String
+  url                String?
+  Category_Option    Category_OptionSet[]
+  Category_SpecGroup Category_SpecGroup[]
+  products           Product[]
+}
+
+model Category_OptionSet {
+  id String @id @default(cuid()) @map("_id")
+
+  option     OptionSet @relation(fields: [optionID], references: [id], onDelete: Cascade)
+  optionID   String
+  category   Category  @relation(fields: [categoryID], references: [id])
+  categoryID String
+
+  @@unique([optionID, categoryID])
+}
+
+model OptionSet {
+  id              String               @id @default(cuid()) @map("_id")
+  name            String
+  options         NameValue[]
+  type            OptionSetType
+  Category_Option Category_OptionSet[]
+}
+
+model NameValue {
+  id          String    @id @default(cuid()) @map("_id")
+  name        String
+  value       String
+  optionSet   OptionSet @relation(fields: [optionSetID], references: [id], onDelete: Cascade)
+  optionSetID String
+}
+
+model Category_SpecGroup {
+  id String @id @default(cuid()) @map("_id")
+
+  specGroup   SpecGroup @relation(fields: [specGroupID], references: [id], onDelete: Cascade)
+  specGroupID String
+  category    Category  @relation(fields: [categoryID], references: [id])
+  categoryID  String
+
+  @@unique([specGroupID, categoryID])
+}
+
+model SpecGroup {
+  id                 String               @id @default(cuid()) @map("_id")
+  title              String
+  specs              String[]
+  Category_SpecGroup Category_SpecGroup[]
+}
+
+enum OptionSetType {
+  TEXT
+  COLOR
+}
+
+model Product {
+  id              String        @id @default(cuid()) @map("_id")
+  name            String
+  isAvailable     Boolean       @default(true)
+  desc            String?
+  specialFeatures String[]
+  images          Json
+  category        Category      @relation(fields: [categoryID], references: [id])
+  categoryID      String
+  optionSets      String[]
+  price           Float
+  salePrice       Float?
+  specs           Json?
+  brand           Brand         @relation(fields: [brandID], references: [id])
+  brandID         String
+  PageVisit       PageVisit[]
+  ProductSpec     ProductSpec[]
+}
+
+model ProductSpec {
+  id          String   @id @default(cuid()) @map("_id")
+  specGroupID String
+  specValues  String[]
+  product     Product  @relation(fields: [productID], references: [id], onDelete: Cascade)
+  productID   String
+}
+
+// Removed ProductSpec composite type because Postgres does not support composite types.
+// Use Json type for the 'specs' field in Product instead.
+
+model Brand {
+  id       String    @id @default(cuid()) @map("_id")
+  name     String    @unique
+  products Product[]
+}
+
+model PageVisit {
+  id               String    @id @default(cuid()) @map("_id")
+  time             DateTime? @default(now())
+  pageType         PageType
+  pagePath         String?
+  deviceResolution String?
+  productID        String?
+  product          Product?  @relation(fields: [productID], references: [id])
+}
+
+enum PageType {
+  MAIN
+  LIST
+  PRODUCT
+}
+
+// ---------------------- USER MANAGEMENT SECTION ---------------------- 
+model Account {
+  id                String  @id @default(cuid()) @map("_id")
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model User {
+  id             String    @id @default(cuid()) @map("_id")
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  hashedPassword String?
+  image          String?
+  accounts       Account[]
+}
