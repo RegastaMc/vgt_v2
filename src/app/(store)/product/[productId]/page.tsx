@@ -23,6 +23,7 @@ const ProductPage = () => {
   useEffect(() => {
     const getProductFromDB = async () => {
       const response = await getOneProduct(productId.toString());
+      console.log("res:", response);
       if (response.error) router.push("/");
       setProductInfo(response.res);
     };
@@ -155,7 +156,7 @@ const ProductPage = () => {
             </div>
 
             {/* ----------------- USER REVIEWS ----------------- */}
-            <div className="flex flex-col w-full h-auto">
+            {/* <div className="flex flex-col w-full h-auto">
               <div className="flex justify-between items-center pb-4 border-b border-gray-300">
                 <h2 className="font-light block text-2xl text-gray-900">User Reviews</h2>
                 <button className="text-sm text-gray-900 px-6 py-1.5 rounded-md bg-gray-100 border border-gray-700 hover:bg-gray-200 active:bg-light-300">
@@ -197,10 +198,10 @@ const ProductPage = () => {
                   </span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="w-full my-[100px]">
+        {/* <div className="w-full my-[100px]">
           <h2 className="font-light block text-2xl text-gray-900">Similar Products</h2>
           <div className="flex justify-between gap-3.5 w-full overflow-x-scroll pb-2">
             {TopProducts.map((product, index) => (
@@ -219,7 +220,7 @@ const ProductPage = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

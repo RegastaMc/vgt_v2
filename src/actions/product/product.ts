@@ -156,17 +156,19 @@ export const getOneProduct = async (productID: string) => {
     if (!result) return { error: "Invalid Data!" };
 
     const specifications = await generateSpecTable(result.specs as ProductSpec[]);
-    if (!specifications || specifications.length === 0) return { error: "Invalid Date" };
+    // if (!specifications || specifications.length === 0) return { error: "Invalid Specs!" };
 
     const pathArray: TPath[] | null = await getPathByCategoryID(result.category.id, result.category.parentID);
-    if (!pathArray || pathArray.length === 0) return { error: "Invalid Date" };
+    if (!pathArray || pathArray.length === 0) return { error: "Invalid CatById!" };
 
     //eslint-disable-next-line
     const { specs, ...others } = result;
     const mergedResult: TProductPageInfo = {
       ...others,
       images: (others.images as string[]) || [],
-      specifications,
+
+      // specifications,
+      specifications: specifications || [],
       path: pathArray,
     };
 
