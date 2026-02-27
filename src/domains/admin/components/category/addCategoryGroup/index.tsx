@@ -18,6 +18,7 @@ const AddCategoryGroup = ({ onReset }: TProps) => {
     parentID: null,
     name: "",
     url: "",
+    products: [],
   };
   const [errorMsg, setErrorMsg] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(false);
