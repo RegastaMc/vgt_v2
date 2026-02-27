@@ -18,7 +18,7 @@ export const getList = async (path: string, sortData: TListSort, filters: TFilte
 
   const pathArray = pathToArray(path);
 
-  if (!pathArray || pathArray.length > 5 || pathArray.length === 0) return { error: "Invalid Path" };
+  if (!pathArray || pathArray.length > 5 || pathArray.length < 1) return { error: "Invalid Path" };
 
   const categoryID = await findCategoryFromPathArray(pathArray);
 
@@ -71,7 +71,7 @@ const findCategoryFromPathArray = async (pathArray: string[]) => {
     let parentID: string | null = null;
     let categoryID = "";
     pathArray.forEach((path) => {
-      console.log(`path:`, path);
+      path = path.toLowerCase();
       categoryID = result.filter((cat) => cat.parentID === parentID && cat.url === "/" + path)[0]?.id || "";
       parentID = categoryID;
     });

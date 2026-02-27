@@ -42,7 +42,7 @@ const ProductBoard = ({ boardData }: { boardData: TProductBoard }) => {
           <StarIcon width={15} stroke="#856B0F" fill="#FFD643" />
           <StarIcon width={15} stroke="#856B0F" fill="#FFD643" />
           <Link href={"#"} className="ml-4 text-xs text-bitex-blue-300">
-            880 User Reviews
+            0 User Reviews
           </Link>
         </div>
       </section>
@@ -55,7 +55,7 @@ const ProductBoard = ({ boardData }: { boardData: TProductBoard }) => {
       <h2 className="text-3xl font-medium text-gray-800 mb-5">
         {(dealPrice ? dealPrice : price).toLocaleString("en-us", {
           minimumIntegerDigits: 2,
-          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
         })}{" "}
         Ksh.
       </h2>
@@ -67,8 +67,8 @@ const ProductBoard = ({ boardData }: { boardData: TProductBoard }) => {
             Save
             ${(price - dealPrice).toLocaleString("en-us", {
               minimumIntegerDigits: 2,
-              minimumFractionDigits: 2,
-            })} Ksh. (${((price - dealPrice) / price) * 100}%) //review this later
+              maximumFractionDigits: 2,
+            })} Ksh. (${(((price - dealPrice) / price) * 100).toFixed(1)}%) 
             `}
           </span>
           <span className="mt-[10px] block text-gray-800">Was {price} Ksh.</span>

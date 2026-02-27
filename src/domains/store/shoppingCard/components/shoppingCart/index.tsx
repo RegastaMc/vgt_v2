@@ -29,7 +29,7 @@ const ShoppingCart = ({ isVisible, quantity, handleOnClose }: TProps) => {
       rawData.forEach((item) => {
         cartListItem.push({
           productId: item.id,
-          imgUrl: process.env.IMG_URL + item.images[0],
+          imgUrl: item.images[0].url,
           price: item.price,
           quantity: localCartItems.items.find((f) => f.productId === item.id)?.quantity || 0,
           productName: item.name,
@@ -65,14 +65,14 @@ const ShoppingCart = ({ isVisible, quantity, handleOnClose }: TProps) => {
     <div
       className={cn(
         "fixed inset-0 z-[50] transition-all duration-300 cursor-default",
-        isVisible ? "visible opacity-100" : "invisible opacity-0"
+        isVisible ? "visible opacity-100" : "invisible opacity-0",
       )}
     >
       <div className="absolute inset-0 sm:bg-black/60 bg-black/40 cursor-pointer" onClick={handleOnClose} />
       <div
         className={cn(
           "absolute top-0 bottom-0 right-0 sm:w-[400px] w-5/6 bg-white flex flex-col pb-[140px] transition-transform duration-500 easeOutCustom",
-          isVisible ? "translate-x-0" : "translate-x-full"
+          isVisible ? "translate-x-0" : "translate-x-full",
         )}
       >
         <div className="flex items-center justify-between py-3 border-b border-gray-300 mx-6">

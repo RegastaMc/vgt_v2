@@ -8,6 +8,7 @@ import ProductListItem from "@/domains/admin/components/product/productListItem"
 import Button from "@/shared/components/UI/button";
 import Popup from "@/shared/components/UI/popup";
 import { TAddProductFormValues, TProductListItem } from "@/shared/types/product";
+import toast from "react-hot-toast";
 
 const initialForm: TAddProductFormValues = {
   name: "",
@@ -41,9 +42,12 @@ const AdminProducts = () => {
     setIsLoading(true);
     const result = await addProduct(formValues);
     if (result.error) {
+      toast.error(result.error || "Failed to add product", { position: "top-center" });
       setIsLoading(false);
     }
     if (result.res) {
+      toast.success("Product added successfully", { position: "top-center", duration: 4000 });
+      getProductsList();
       setIsLoading(false);
       setShowProductWindow(false);
     }
@@ -54,7 +58,23 @@ const AdminProducts = () => {
       <div className="flex items-center h-20 mb-8">
         <Button onClick={() => setShowProductWindow(true)}>Add new product</Button>
       </div>
-      <div className="flex flex-col text-sm text-gray-800">
+      <div className="flex flex-col text-sm text-gray-800 bg-white rounded-lg shadow-md gap-4">
+        <table className="w-full text-left">
+          <thead className="bg-gray-100">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Category
+              </th>
+
+              <th scope="col" className="px-6 py-3">
+                Actions
+              </th>
+            </tr>
+          </thead>
+        </table>
         {productsList.length ? (
           <>
             {productsList.map((product) => (

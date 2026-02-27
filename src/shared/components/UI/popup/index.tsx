@@ -45,11 +45,15 @@ const Popup = ({
         )}
         {content}
         <div className="flex pt-4 border-t text-sm border-gray-300 justify-center items-center gap-6">
-          <Button className="w-[140px] py-1.5" onClick={onCancel}>
+          <Button className="w-[140px] hover:bg-gray-400 py-1.5" onClick={onCancel}>
             {cancelBtnText || "Cancel"}
           </Button>
-          <Button className="w-[140px] py-1.5" disabled={isLoading} onClick={onSubmit}>
-            {confirmBtnText || "OK"}
+          <Button
+            className="w-[140px] cursor-pointer disabled:cursor-wait hover:bg-gray-400 py-1.5"
+            disabled={isLoading}
+            onClick={onSubmit}
+          >
+            {isLoading ? "Processing..." : confirmBtnText || "Confirm"}
           </Button>
         </div>
       </div>

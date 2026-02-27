@@ -153,7 +153,7 @@ const Header = () => {
               <div className="flex justify-end flex-col">
                 <span className="block text-xs text-nowrap text-gray-600 uppercase">24/7 SUPPORT</span>
                 <p className="font-medium text-sm text-gray-800">
-                  <Link href="tel:+254740958885"> 0740958885</Link>
+                  <Link href="tel:+254706293576"> 0706293576</Link>
                 </p>
               </div>
             </div>

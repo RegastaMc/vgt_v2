@@ -78,12 +78,17 @@ const Footer = () => {
           </div>
         </div>
         <section className="flex flex-col lg:flex-row items-start justify-between">
-          <div>
+          <div className="lg:mb-0 mb-12 flex flex-col">
             <h3 className="text-lg text-gray-900 font-medium mt-9 mb-4">Contact Us</h3>
             <span className="text-gray-500 block text-sm leading-5">Got Question? Call us 24/7</span>
-            <h2 className="text-blue-600 font-medium my-2">0706293576</h2>
             <span className="text-gray-500 block text-sm leading-5">Nairobi,Kenya</span>
-            <span className="text-gray-500 block text-sm leading-5">vgtelectricalssupplieslimited@gmail.com</span>
+            <Link href="tel:+254706293576" className="text-blue-400 hover:text-blue-600  cursor-pointer">
+              {" "}
+              0706293576
+            </Link>
+            <Link href="mailto:vgtelectricalssupplieslimited@gmail.com" className="text-blue-400 hover:text-blue-600">
+              vgtelectricalssupplieslimited@gmail.com
+            </Link>
           </div>
           <div>
             <h3 className="text-lg text-gray-900 font-medium mt-9 mb-4">Categories</h3>

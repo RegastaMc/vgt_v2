@@ -78,7 +78,7 @@ export type TProductListItem = {
 export type TCartListItemDB = {
   id: string;
   name: string;
-  images: string[];
+  images: { url: string; public_id: string }[];
   price: number;
   salePrice: number | null;
 };
@@ -103,7 +103,7 @@ export type TProductPageInfo = {
   name: string;
   isAvailable: boolean;
   desc: string | null;
-  images: string[];
+  images: { url: string; public_id: string }[];
   optionSets: string[];
   specialFeatures: string[];
   price: number;

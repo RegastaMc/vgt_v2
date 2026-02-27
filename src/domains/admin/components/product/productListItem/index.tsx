@@ -5,6 +5,7 @@ import { deleteProduct } from "@/actions/product/product";
 import Button from "@/shared/components/UI/button";
 import Popup from "@/shared/components/UI/popup";
 import { TProductListItem } from "@/shared/types/product";
+import toast from "react-hot-toast";
 
 type TProps = {
   data: TProductListItem;
@@ -17,11 +18,14 @@ const ProductListItem = ({ data, requestReload }: TProps) => {
 
   const handleDelete = async () => {
     setIsLoading(true);
+
     const response = await deleteProduct(data.id);
     if (response.error) {
+      toast.error(response.error || "Failed to delete product", { position: "bottom-center" });
       setIsLoading(false);
     }
     if (response.res) {
+      toast.success("Product deleted successfully", { position: "bottom-center", duration: 6000 });
       setIsLoading(false);
       requestReload();
     }
@@ -32,8 +36,12 @@ const ProductListItem = ({ data, requestReload }: TProps) => {
       <span className={"styles.name"}>{data.name}</span>
       <span className={"styles.category"}>{data.category.name}</span>
       <div className="flex gap-2 justify-end">
-        <Button onClick={() => console.log("edit product")}>edit</Button>
-        <Button onClick={() => setShowDelete(true)}>delete</Button>
+        <Button className="bg-blue-500 hover:bg-blue-600 text-white" onClick={() => console.log("edit product")}>
+          edit
+        </Button>
+        <Button className="bg-red-500 hover:bg-red-600 text-white" onClick={() => setShowDelete(true)}>
+          delete
+        </Button>
       </div>
       {showDelete && (
         <Popup

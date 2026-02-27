@@ -11,6 +11,7 @@ import {
   TSpecification,
 } from "@/shared/types/product";
 import { ProductSpec } from "prisma/src/lib/prisma/client";
+import cloudinary from "@/shared/lib/cloudinary";
 
 const ValidateAddProduct = z.object({
   name: z.string().min(3),
@@ -42,9 +43,24 @@ export const addProduct = async (data: TAddProductFormValues) => {
     const price = convertStringToFloat(data.price);
     const salePrice = data.salePrice ? convertStringToFloat(data.salePrice) : null;
 
-    const serializedImages = data.images.map((img) =>
-      img instanceof File ? { name: img.name, size: img.size, type: img.type } : img,
-    );
+    if (data.brandID === "none") return { error: "Please select a brand!" };
+    if (data.categoryID === "none") return { error: "Please select a category!" };
+
+    if (data.images.length > 5) {
+      return { error: "You can only add up to 5 images" };
+    }
+    if (price < 0) {
+      return { error: "Price can't be negative" };
+    }
+    if (salePrice !== null && salePrice < 0) {
+      return { error: "Sale Price can't be negative" };
+    }
+    if (salePrice !== null && salePrice >= price) {
+      return { error: "Sale Price must be less than the original price" };
+    }
+    if (!salePrice && salePrice !== 0) {
+      return { error: "Please enter a sale price or leave it empty" };
+    }
 
     const result = db.category.update({
       where: {
@@ -61,7 +77,7 @@ export const addProduct = async (data: TAddProductFormValues) => {
             isAvailable: data.isAvailable,
             price: price,
             salePrice: salePrice,
-            images: serializedImages,
+            images: data.images as unknown as object,
             specs: data.specifications,
           },
         },
@@ -165,7 +181,7 @@ export const getOneProduct = async (productID: string) => {
     const { specs, ...others } = result;
     const mergedResult: TProductPageInfo = {
       ...others,
-      images: (others.images as string[]) || [],
+      images: (others.images as { url: string; public_id: string }[]) || [],
 
       // specifications,
       specifications: specifications || [],
@@ -199,7 +215,7 @@ export const getCartProducts = async (productIDs: string[]) => {
 
     const cartProducts: TCartListItemDB[] = result.map((product) => ({
       ...product,
-      images: (product.images as string[]) || [],
+      images: (product.images as { url: string; public_id: string }[]) || [],
     }));
 
     return { res: cartProducts };
@@ -211,13 +227,26 @@ export const getCartProducts = async (productIDs: string[]) => {
 export const deleteProduct = async (productID: string) => {
   if (!productID || productID === "") return { error: "Invalid Data!" };
   try {
+    const product = await db.product.findUnique({
+      where: {
+        id: productID,
+      },
+    });
+
+    if (!product) return { error: "Product Not Found!" };
+    const images = product.images as { url: string; publicId: string }[];
+
+    for (const img of images) {
+      await cloudinary.uploader.destroy(img.publicId);
+    }
+
     const result = await db.product.delete({
       where: {
         id: productID,
       },
     });
 
-    if (!result) return { error: "Can't Delete!" };
+    if (!result) return { error: "Failed to delete product!" };
     return { res: result };
   } catch (error) {
     return { error: JSON.stringify(error) };

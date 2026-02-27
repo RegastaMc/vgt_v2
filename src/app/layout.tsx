@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ToasterProvider } from "@/lib/Toast";
 
 const outfitFont = localFont({
   src: "../assets/fonts/Outfit-VariableFont.ttf",
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={outfitFont.className}>{children}</body>
+      <body className={outfitFont.className}>
+        <ToasterProvider />
+        {children}
+      </body>
     </html>
   );
 }

@@ -152,7 +152,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
       });
       const data = await res.json();
       if (res.ok) {
-        toast.success("Image deleted successfully");
+        toast.success("Image deleted successfully", { position: "top-center", duration: 4000, icon: "🗑️" });
         field.onChange(field.value.filter((img: any) => img.publicId !== publicId));
       } else {
         toast.error(data?.error || "Failed to delete image");
@@ -166,7 +166,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
   return (
     <div className="flex flex-col overflow-y-scroll p-6 rounded-xl bg-white z-10 text-sm">
       <div className="grid grid-col-4 gap-4">
-        <div className="flex items-center justify-between">
+        <div className=" items-center flex flex-col md:flex-row justify-between">
           <span>Name:</span>
           <Input
             type="text"
@@ -181,7 +181,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             }
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center  flex-col md:flex-row justify-between">
           <span>Short Descriptions:</span>
           <Input
             type="text"
@@ -196,7 +196,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             placeholder="Short Description..."
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center  flex-col md:flex-row justify-between">
           <span>Special Features:</span>
           <div className="flex flex-col gap-2 mr-6">
             <Input
@@ -216,7 +216,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             />
           </div>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center  flex-col md:flex-row justify-between">
           <span>Price:</span>
           <Input
             type="number"
@@ -231,7 +231,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             placeholder="Ksh.0.00"
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center  flex-col md:flex-row justify-between">
           <span>Sale Price:</span>
           <Input
             type="number"
@@ -246,7 +246,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             placeholder="Ksh.0.00"
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center  flex-col md:flex-row justify-between">
           <span>Is In Stock:</span>
           <div className="flex gap-2 items-center">
             <span
@@ -273,7 +273,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center  flex-col md:flex-row justify-between">
           <span>Brand:</span>
           <DropDownList
             data={brandList}
@@ -282,7 +282,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             onChange={handleBrandChange}
           />
         </div>
-        <div>
+        <div className="flex items-center  flex-col md:flex-row justify-between">
           <label htmlFor="images">Upload Product Images</label>
           <div className="flex flex-wrap gap-2 mt-2">
             <CldUploadWidget
@@ -358,7 +358,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center  flex-col md:flex-row justify-between">
           <span>Category</span>
           <DropDownList
             data={categoryList}

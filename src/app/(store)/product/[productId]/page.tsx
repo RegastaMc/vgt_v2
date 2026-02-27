@@ -23,7 +23,6 @@ const ProductPage = () => {
   useEffect(() => {
     const getProductFromDB = async () => {
       const response = await getOneProduct(productId.toString());
-      console.log("res:", response);
       if (response.error) router.push("/");
       setProductInfo(response.res);
     };

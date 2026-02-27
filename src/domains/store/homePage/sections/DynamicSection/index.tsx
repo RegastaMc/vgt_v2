@@ -23,17 +23,24 @@ export default function DynamicSection() {
       if (cat.parentID) {
         categories.push(cat);
         return;
+      } else if (cat.products.length > 0) {
       }
 
-      if (cat.products.length > 0) {
-        groups.push(cat);
-      }
+      groups.push(cat);
     });
   }
+
+  const groupHasProducts = (groupId: string) =>
+    categories.some((cat) => cat.parentID === groupId && cat.products.length > 0);
+
   return (
     <div>
       {" "}
-      {groups.length > 0 && groups.map((group) => <DynamicCards title={"Explore " + group.name} key={group.id} />)}
+      {categories
+        .filter((group) => groupHasProducts(group.id))
+        .map((group) => (
+          <DynamicCards title={"Explore " + group.name} key={group.id} name={group.name} />
+        ))}
     </div>
   );
 }
