@@ -212,12 +212,12 @@ const Header = () => {
       <div className="border-t border-gray-300">
         <div className="max-w-292.5 mx-auto px-4 sm:px-7.5 xl:px-0">
           <div className="flex items-center justify-between max-w-screen">
-            <div
+            {/* <div
               className="flex items-center justify-between cursor-pointer py-4 m-2"
               onClick={() => router.push("/shop-with-sidebar")}
             >
               <h3 className="text-lg font-semibold">Shop</h3>
-            </div>
+            </div> */}
             {/* <!--=== Main Nav Start ===--> */}
             <div
               className={`w-[288px] absolute right-4 top-full xl:static xl:w-auto h-0 xl:h-auto invisible xl:visible xl:flex items-center justify-between ${
@@ -228,7 +228,7 @@ const Header = () => {
               {/* <!-- Main Nav Start --> */}
 
               <nav className="hidden lg:flex bg-white gap-2 items-center relative ">
-                <span className="hidden xl:block w-px h-7.5 bg-gray-400"></span>
+                {/* <span className="hidden xl:block w-px h-7.5 bg-gray-400"></span> */}
                 <ul className="flex items-center gap-3 px-6 flex-wrap">
                   {!categories.length ? (
                     <div className="flex gap-4 py-4">{Skeletons()}</div>

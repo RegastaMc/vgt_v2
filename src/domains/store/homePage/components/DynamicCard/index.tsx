@@ -49,7 +49,7 @@ const DynamicCard = ({ productName, newPrice, oldPrice, image, dealEndTime, spec
         <span>Save {saveAmount.toLocaleString("en-us", { minimumFractionDigits: 2 })} Ksh.</span>
       </div> */}
       <Link href={url}>
-        <h3 className="mt-3.5 mb-3 ml-2 text-gray-600">{productName}</h3>
+        <h3 className="mt-3.5 mb-3 ml-2 text-gray-800 uppercase font-semibold">{productName}</h3>
       </Link>
       <div className="h-14 w-full ml-2">
         {!!spec.length &&
