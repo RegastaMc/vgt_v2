@@ -9,6 +9,12 @@ const GetAllCategories = z.object({
   parentID: z.string().min(6).nullable(),
   name: z.string().min(3),
   url: z.string().min(3).nullable(),
+  products: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string().min(3),
+    }),
+  ),
 });
 
 const AddCategory = z.object({
@@ -62,7 +68,20 @@ const convertToJson = (categoriesTable: TCategory[]): TGroupJSON[] => {
 
 export const getAllCategories = async () => {
   try {
-    const result: TGetAllCategories[] = await db.category.findMany();
+    const result: TGetAllCategories[] = await db.category.findMany({
+      select: {
+        id: true,
+        parentID: true,
+        name: true,
+        url: true,
+        products: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
 
     if (!result) return { error: "Can't read categories" };
     return { res: result };

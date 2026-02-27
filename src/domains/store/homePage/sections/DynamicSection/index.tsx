@@ -25,7 +25,9 @@ export default function DynamicSection() {
         return;
       }
 
-      groups.push(cat);
+      if (cat.products.length > 0) {
+        groups.push(cat);
+      }
     });
   }
   return (

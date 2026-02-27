@@ -86,6 +86,36 @@ export const getAllProducts = async () => {
             name: true,
           },
         },
+        price: true,
+        salePrice: true,
+        specs: true,
+        brand: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        isAvailable: true,
+        images: true,
+        desc: true,
+        specialFeatures: true,
+        PageVisit: {
+          select: {
+            deviceResolution: true,
+            id: true,
+            pagePath: true,
+            time: true,
+            pageType: true,
+          },
+        },
+        ProductSpec: {
+          select: {
+            id: true,
+            specGroupID: true,
+            specValues: true,
+            productID: true,
+          },
+        },
       },
     });
 

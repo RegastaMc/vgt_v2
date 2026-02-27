@@ -12,7 +12,7 @@ import {
 } from "@/domains/store/homePage/components";
 import DynamicSection from "@/domains/store/homePage/sections/DynamicSection";
 export const metadata: Metadata = {
-  title: "BITEX - Homepage",
+  title: "VGT ELectricals Supplies",
 };
 
 export default function Home() {

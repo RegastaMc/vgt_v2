@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import { ClockIcon } from "@/shared/components/icons/svgIcons";
-
 type TProps = {
   productName: string;
   newPrice: number;
@@ -14,6 +12,7 @@ type TProps = {
   dealEndTime: Date;
   spec?: string[];
   url: string;
+  images?: JSON[];
 };
 
 const DynamicCard = ({ productName, newPrice, oldPrice, image, dealEndTime, spec = [], url }: TProps) => {
@@ -32,14 +31,14 @@ const DynamicCard = ({ productName, newPrice, oldPrice, image, dealEndTime, spec
       >
         <Image
           alt=""
-          src={image[0]}
+          src={image[0] || "/images/products/airpods1.jpg"}
           fill
           sizes="(max-width:240px)"
           className="object-contain transition-all duration-400 ease-out"
         />
         <Image
           alt=""
-          src={image[1]}
+          src={image[1] || "/images/products/airpods1.jpg"}
           fill
           sizes="(max-width:240px)"
           className="object-contain transition-all duration-400 ease-out opacity-0 scale-[0.9]"
@@ -61,21 +60,25 @@ const DynamicCard = ({ productName, newPrice, oldPrice, image, dealEndTime, spec
       </div>
       <div className="flex justify-between mx-2 mt-2">
         <section className="flex justify-between">
-          <span className="block line-through text-red-500 text-sm">
-            was{" "}
-            {oldPrice.toLocaleString("en-us", {
-              useGrouping: true,
-              minimumFractionDigits: 0,
-            })}{" "}
-            Kes.
-          </span>
-          <span className="block text-lg font-medium text-green-700">
-            Ksh.
-            {newPrice.toLocaleString("en-us", {
-              useGrouping: true,
-              minimumFractionDigits: 2,
-            })}{" "}
-          </span>
+          {oldPrice && (
+            <span className="block line-through text-red-500 text-sm">
+              was{" "}
+              {oldPrice.toLocaleString("en-us", {
+                useGrouping: true,
+                minimumFractionDigits: 0,
+              })}{" "}
+              Kes.
+            </span>
+          )}
+          {newPrice && (
+            <span className="block text-lg font-medium text-green-700">
+              Ksh.
+              {newPrice.toLocaleString("en-us", {
+                useGrouping: true,
+                minimumFractionDigits: 2,
+              })}{" "}
+            </span>
+          )}
         </section>
       </div>
     </div>

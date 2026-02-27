@@ -20,6 +20,7 @@ import LineList from "@/shared/components/UI/lineList";
 import { IMAGE_BASE_URL } from "@/shared/constants/store";
 import { TProductPath } from "@/shared/types/product";
 import { cn } from "@/shared/utils/styling";
+import toast from "react-hot-toast";
 
 const ListPage = () => {
   const router = useRouter();
@@ -45,6 +46,10 @@ const ListPage = () => {
       setIsListLoading(true);
 
       const response = await getList(pathName, SORT_DATA[sortIndex], appliedFilters);
+      toast.error(response.error || "An error occurred while fetching products", {
+        duration: 4000,
+        position: "bottom-center",
+      });
       if (response.error || !response.products || !response.subCategories) return router.push("/");
 
       const transformedProducts = response.products.map((product) => ({
