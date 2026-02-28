@@ -46,13 +46,16 @@ const ProductCard = ({
         />
       </div>
       <span className="inline-block text-gray-800 mt-2.5 mb-2 ml-2">{name}</span>
-      <div className="h-16 flex flex-col">
-        {specs.map((spec, index) => (
-          <span key={index} className="block text-sm ml-2 text-gray-600">
-            {spec}
-          </span>
-        ))}
-      </div>
+
+      {specs.length > 0 && (
+        <div className="h-16 flex flex-col">
+          {specs.map((spec, index) => (
+            <span key={index} className="block text-sm ml-2 text-gray-600">
+              {spec}
+            </span>
+          ))}
+        </div>
+      )}
       <div className="flex items-center h-10 mt-6 ml-2">
         <div className="flex-grow relative">
           {dealPrice ? (

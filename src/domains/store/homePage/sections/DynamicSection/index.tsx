@@ -38,7 +38,7 @@ export default function DynamicSection() {
     <div>
       {" "}
       {validGroups.map((group) => (
-        <DynamicCards title={"Explore " + group.name} key={group.id} name={group.name} />
+        <DynamicCards title={group.name} key={group.id} name={group.name} />
       ))}
     </div>
   );

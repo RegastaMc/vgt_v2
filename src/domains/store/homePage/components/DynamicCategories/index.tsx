@@ -25,7 +25,7 @@ export const DynamicCards = ({ title, name }: { title: string; name: string }) =
         <h2 className="text-2xl font-medium text-gray-700 underline">{title}</h2>
         <Link
           href={`/list/${name.toLocaleLowerCase()}`}
-          className="font-medium bg-[position:right_center] hover:pr-5 pr-6 text-gray-700 bg-[url('/icons/arrowIcon02.svg')] bg-no-repeat bg-right-center transition-all duration-300 ease-out"
+          className="font-medium text-nowrap bg-[position:right_center] hover:pr-5 pr-6 text-gray-700 bg-[url('/icons/arrowIcon02.svg')] bg-no-repeat bg-right-center transition-all duration-300 ease-out"
         >
           view all
         </Link>
