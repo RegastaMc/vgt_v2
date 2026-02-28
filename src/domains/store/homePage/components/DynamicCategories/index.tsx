@@ -20,7 +20,7 @@ export const DynamicCards = ({ title, name }: { title: string; name: string }) =
   };
 
   return (
-    <div className="w-full mt-14">
+    <div className="w-full mt-14 ">
       <div className="flex w-full justify-between items-center mb-7">
         <h2 className="text-2xl font-medium text-gray-700 underline">{title}</h2>
         <Link
@@ -35,7 +35,7 @@ export const DynamicCards = ({ title, name }: { title: string; name: string }) =
           <ProductCard
             key={product.id}
             imgUrl={
-              (product.images?.map((img: any) =>
+              (product.images?.map((img: { url: string; public_id: string }) =>
                 typeof img === "object" && img !== null && "url" in img ? img.url : "",
               ) || []) as [string, string]
             }

@@ -66,12 +66,12 @@ const ProductCard = ({
                   %
                 </span>
                 <span className="block w-full line-through text-gray-700 text-sm ml-2">
-                  was {price.toLocaleString("en-us", { minimumFractionDigits: 2 })}Ksh.
+                  {price.toLocaleString("en-us", { minimumFractionDigits: 1 })}Ksh.
                 </span>
               </div>
               <span className="text-lg font-medium text-gray-800">
                 {dealPrice.toLocaleString("en-us", {
-                  minimumFractionDigits: 2,
+                  minimumFractionDigits: 1,
                 })}
                 Ksh.
               </span>

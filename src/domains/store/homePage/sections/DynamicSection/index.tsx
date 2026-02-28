@@ -30,17 +30,16 @@ export default function DynamicSection() {
     });
   }
 
-  const groupHasProducts = (groupId: string) =>
-    categories.some((cat) => cat.parentID === groupId && cat.products.length > 0);
+  const validGroups = groups.filter((group) =>
+    categories.some((sub) => sub.parentID === group.id && sub.products && sub.products.length > 0),
+  );
 
   return (
     <div>
       {" "}
-      {categories
-        .filter((group) => groupHasProducts(group.id))
-        .map((group) => (
-          <DynamicCards title={"Explore " + group.name} key={group.id} name={group.name} />
-        ))}
+      {validGroups.map((group) => (
+        <DynamicCards title={"Explore " + group.name} key={group.id} name={group.name} />
+      ))}
     </div>
   );
 }
