@@ -60,7 +60,7 @@ const Footer = () => {
       <div className="flex-col storeContainer">
         <div className="flex w-full items-center h-32 border-b border-b-gray-300">
           <Link href={"/"}>
-            <Image alt="Bitex Logo" src={"/images/logo.png"} width={125} height={40} />
+            <Image alt="VGT Logo" src={"/images/vgtelogo.png"} width={125} height={40} />
           </Link>
           <div className="h-11 w-full relative ml-16">
             <input
