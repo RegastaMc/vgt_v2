@@ -61,6 +61,9 @@ export const addProduct = async (data: TAddProductFormValues) => {
     if (!salePrice && salePrice !== 0) {
       return { error: "Please enter a sale price or leave it empty" };
     }
+    if (!data.images || data.images.length === 0) {
+      return { error: "Please upload at least one image" };
+    }
 
     const result = db.category.update({
       where: {
@@ -71,7 +74,6 @@ export const addProduct = async (data: TAddProductFormValues) => {
           create: {
             name: data.name,
             desc: data.desc,
-
             brandID: data.brandID,
             specialFeatures: data.specialFeatures,
             isAvailable: data.isAvailable,

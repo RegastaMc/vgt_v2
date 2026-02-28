@@ -124,32 +124,30 @@ enum PageType {
   PRODUCT
 }
 
-// ---------------------- USER MANAGEMENT SECTION ---------------------- 
-model Account {
-  id                String  @id @default(cuid()) @map("_id")
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
+enum userRole {
+  SUPER
+  ADMIN
+  USER
+}
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
+enum userStatus {
+  ACTIVE
+  INACTIVE
+  BANNED
 }
 
 model User {
-  id             String    @id @default(cuid()) @map("_id")
-  name           String?
-  email          String?   @unique
-  emailVerified  DateTime?
-  hashedPassword String?
-  image          String?
-  accounts       Account[]
+  id            String    @id @default(cuid())
+  email         String    @unique
+  username      String?   @unique
+  passwordhash  String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  emailVerified DateTime?
+  image         Json?
+  name          String?
+  phone         String?   @unique
+
+  status userStatus @default(ACTIVE)
+  role   userRole   @default(USER)
 }

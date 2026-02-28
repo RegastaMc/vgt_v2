@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ToasterProvider } from "@/lib/Toast";
+import { SessionProvider } from "next-auth/react";
 
 const outfitFont = localFont({
   src: "../assets/fonts/Outfit-VariableFont.ttf",
@@ -19,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={outfitFont.className}>
         <ToasterProvider />
-        {children}
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   );

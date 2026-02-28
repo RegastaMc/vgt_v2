@@ -3,5 +3,6 @@
     "source.fixAll.eslint": "always"
   },
   "editor.formatOnSave": true,
-  "cSpell.words": ["BITEX"]
+  "cSpell.words": ["BITEX"],
+  "editor.mouseWheelZoom": true
 }

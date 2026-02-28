@@ -195,28 +195,19 @@ exports.Prisma.PageVisitScalarFieldEnum = {
   productID: 'productID'
 };
 
-exports.Prisma.AccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  type: 'type',
-  provider: 'provider',
-  providerAccountId: 'providerAccountId',
-  refresh_token: 'refresh_token',
-  access_token: 'access_token',
-  expires_at: 'expires_at',
-  token_type: 'token_type',
-  scope: 'scope',
-  id_token: 'id_token',
-  session_state: 'session_state'
-};
-
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   email: 'email',
+  username: 'username',
+  passwordhash: 'passwordhash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   emailVerified: 'emailVerified',
-  hashedPassword: 'hashedPassword',
-  image: 'image'
+  image: 'image',
+  name: 'name',
+  phone: 'phone',
+  status: 'status',
+  role: 'role'
 };
 
 exports.Prisma.SortOrder = {
@@ -259,6 +250,18 @@ exports.PageType = exports.$Enums.PageType = {
   PRODUCT: 'PRODUCT'
 };
 
+exports.userStatus = exports.$Enums.userStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  BANNED: 'BANNED'
+};
+
+exports.userRole = exports.$Enums.userRole = {
+  SUPER: 'SUPER',
+  ADMIN: 'ADMIN',
+  USER: 'USER'
+};
+
 exports.Prisma.ModelName = {
   Category: 'Category',
   Category_OptionSet: 'Category_OptionSet',
@@ -270,7 +273,6 @@ exports.Prisma.ModelName = {
   ProductSpec: 'ProductSpec',
   Brand: 'Brand',
   PageVisit: 'PageVisit',
-  Account: 'Account',
   User: 'User'
 };
 
