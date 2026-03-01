@@ -2,7 +2,7 @@ import { TSlide, TBlogCard } from "@/shared/types/common";
 
 export const SlidesData: TSlide[] = [
   {
-    imgUrl: "/images/images/PS5.webp",
+    img: "/images/images/PS5.webp",
     url: "/product/65e6f80a9d4ab819d11581a2",
     alt: "/playstation5",
     msg: {
@@ -11,7 +11,7 @@ export const SlidesData: TSlide[] = [
     },
   },
   {
-    imgUrl: "/images/images/wacom.jpg",
+    img: "/images/images/wacom.jpg",
     url: "/product/65e6f7469d4ab819d11581a1",
     alt: "WACOM CINITIQ PRO",
     msg: {
@@ -21,7 +21,7 @@ export const SlidesData: TSlide[] = [
     },
   },
   {
-    imgUrl: "/images/images/appleWatch.jpg",
+    img: "/images/images/appleWatch.jpg",
     url: "/product/65e6f5339d4ab819d115819c",
     alt: "APPLE WATCH",
     msg: {
@@ -31,7 +31,7 @@ export const SlidesData: TSlide[] = [
     },
   },
   {
-    imgUrl: "/images/images/appleAirpods.jpg",
+    img: "/images/images/appleAirpods.jpg",
     url: "/list/audio/headphones/apple",
     alt: "",
     msg: {

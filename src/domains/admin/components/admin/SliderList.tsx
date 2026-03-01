@@ -66,7 +66,10 @@ export default function SliderList({ sliders, setSliders, onEdit, onDelete }: Sl
         }
       }}
     >
-      <SortableContext items={sliders || []} strategy={verticalListSortingStrategy}>
+      <SortableContext
+        items={sliders?.map((s) => s.id).filter((id): id is string => Boolean(id)) || []}
+        strategy={verticalListSortingStrategy}
+      >
         <div className="space-y-3">
           {sliders?.map((slider: TSlide, index: number) => (
             <SortableItem key={index} slider={slider} onEdit={onEdit} onDelete={onDelete} />

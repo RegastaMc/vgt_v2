@@ -12,11 +12,12 @@ export type TProductCard = {
 };
 
 export type TSlide = {
-  id: string;
-  imgUrl: {
+  id?: string;
+  imgUrl?: {
     url: string;
     public_id: string;
   };
+  img: string;
   url: string;
   alt: string;
   msg?: {

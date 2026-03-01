@@ -104,7 +104,7 @@ export const HomeSlider = () => {
             )}
           >
             <Image
-              src={slide.imgUrl}
+              src={slide?.img}
               alt=""
               fill
               className="hover:scale-105 object-cover transition-all duration-500"
