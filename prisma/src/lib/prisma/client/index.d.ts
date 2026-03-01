@@ -68,6 +68,16 @@ export type PageVisit = $Result.DefaultSelection<Prisma.$PageVisitPayload>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model ProductBanner
+ * 
+ */
+export type ProductBanner = $Result.DefaultSelection<Prisma.$ProductBannerPayload>
+/**
+ * Model Msg
+ * 
+ */
+export type Msg = $Result.DefaultSelection<Prisma.$MsgPayload>
 
 /**
  * Enums
@@ -352,6 +362,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.productBanner`: Exposes CRUD operations for the **ProductBanner** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProductBanners
+    * const productBanners = await prisma.productBanner.findMany()
+    * ```
+    */
+  get productBanner(): Prisma.ProductBannerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.msg`: Exposes CRUD operations for the **Msg** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Msgs
+    * const msgs = await prisma.msg.findMany()
+    * ```
+    */
+  get msg(): Prisma.MsgDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -803,7 +833,9 @@ export namespace Prisma {
     ProductSpec: 'ProductSpec',
     Brand: 'Brand',
     PageVisit: 'PageVisit',
-    User: 'User'
+    User: 'User',
+    ProductBanner: 'ProductBanner',
+    Msg: 'Msg'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -822,7 +854,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "category" | "category_OptionSet" | "optionSet" | "nameValue" | "category_SpecGroup" | "specGroup" | "product" | "productSpec" | "brand" | "pageVisit" | "user"
+      modelProps: "category" | "category_OptionSet" | "optionSet" | "nameValue" | "category_SpecGroup" | "specGroup" | "product" | "productSpec" | "brand" | "pageVisit" | "user" | "productBanner" | "msg"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1640,6 +1672,154 @@ export namespace Prisma {
           }
         }
       }
+      ProductBanner: {
+        payload: Prisma.$ProductBannerPayload<ExtArgs>
+        fields: Prisma.ProductBannerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProductBannerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProductBannerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>
+          }
+          findFirst: {
+            args: Prisma.ProductBannerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProductBannerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>
+          }
+          findMany: {
+            args: Prisma.ProductBannerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>[]
+          }
+          create: {
+            args: Prisma.ProductBannerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>
+          }
+          createMany: {
+            args: Prisma.ProductBannerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProductBannerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>[]
+          }
+          delete: {
+            args: Prisma.ProductBannerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>
+          }
+          update: {
+            args: Prisma.ProductBannerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProductBannerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProductBannerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProductBannerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProductBannerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductBannerPayload>
+          }
+          aggregate: {
+            args: Prisma.ProductBannerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProductBanner>
+          }
+          groupBy: {
+            args: Prisma.ProductBannerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProductBannerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProductBannerCountArgs<ExtArgs>
+            result: $Utils.Optional<ProductBannerCountAggregateOutputType> | number
+          }
+        }
+      }
+      Msg: {
+        payload: Prisma.$MsgPayload<ExtArgs>
+        fields: Prisma.MsgFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MsgFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MsgFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>
+          }
+          findFirst: {
+            args: Prisma.MsgFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MsgFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>
+          }
+          findMany: {
+            args: Prisma.MsgFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>[]
+          }
+          create: {
+            args: Prisma.MsgCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>
+          }
+          createMany: {
+            args: Prisma.MsgCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MsgCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>[]
+          }
+          delete: {
+            args: Prisma.MsgDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>
+          }
+          update: {
+            args: Prisma.MsgUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>
+          }
+          deleteMany: {
+            args: Prisma.MsgDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MsgUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MsgUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>[]
+          }
+          upsert: {
+            args: Prisma.MsgUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MsgPayload>
+          }
+          aggregate: {
+            args: Prisma.MsgAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMsg>
+          }
+          groupBy: {
+            args: Prisma.MsgGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MsgGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MsgCountArgs<ExtArgs>
+            result: $Utils.Optional<MsgCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1747,6 +1927,8 @@ export namespace Prisma {
     brand?: BrandOmit
     pageVisit?: PageVisitOmit
     user?: UserOmit
+    productBanner?: ProductBannerOmit
+    msg?: MsgOmit
   }
 
   /* Types for Logging */
@@ -13849,6 +14031,2116 @@ export namespace Prisma {
 
 
   /**
+   * Model ProductBanner
+   */
+
+  export type AggregateProductBanner = {
+    _count: ProductBannerCountAggregateOutputType | null
+    _min: ProductBannerMinAggregateOutputType | null
+    _max: ProductBannerMaxAggregateOutputType | null
+  }
+
+  export type ProductBannerMinAggregateOutputType = {
+    id: string | null
+    url: string | null
+    alt: string | null
+  }
+
+  export type ProductBannerMaxAggregateOutputType = {
+    id: string | null
+    url: string | null
+    alt: string | null
+  }
+
+  export type ProductBannerCountAggregateOutputType = {
+    id: number
+    imgUrl: number
+    url: number
+    alt: number
+    _all: number
+  }
+
+
+  export type ProductBannerMinAggregateInputType = {
+    id?: true
+    url?: true
+    alt?: true
+  }
+
+  export type ProductBannerMaxAggregateInputType = {
+    id?: true
+    url?: true
+    alt?: true
+  }
+
+  export type ProductBannerCountAggregateInputType = {
+    id?: true
+    imgUrl?: true
+    url?: true
+    alt?: true
+    _all?: true
+  }
+
+  export type ProductBannerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductBanner to aggregate.
+     */
+    where?: ProductBannerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductBanners to fetch.
+     */
+    orderBy?: ProductBannerOrderByWithRelationInput | ProductBannerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProductBannerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductBanners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductBanners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProductBanners
+    **/
+    _count?: true | ProductBannerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProductBannerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProductBannerMaxAggregateInputType
+  }
+
+  export type GetProductBannerAggregateType<T extends ProductBannerAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductBanner]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProductBanner[P]>
+      : GetScalarType<T[P], AggregateProductBanner[P]>
+  }
+
+
+
+
+  export type ProductBannerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductBannerWhereInput
+    orderBy?: ProductBannerOrderByWithAggregationInput | ProductBannerOrderByWithAggregationInput[]
+    by: ProductBannerScalarFieldEnum[] | ProductBannerScalarFieldEnum
+    having?: ProductBannerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProductBannerCountAggregateInputType | true
+    _min?: ProductBannerMinAggregateInputType
+    _max?: ProductBannerMaxAggregateInputType
+  }
+
+  export type ProductBannerGroupByOutputType = {
+    id: string
+    imgUrl: JsonValue | null
+    url: string
+    alt: string
+    _count: ProductBannerCountAggregateOutputType | null
+    _min: ProductBannerMinAggregateOutputType | null
+    _max: ProductBannerMaxAggregateOutputType | null
+  }
+
+  type GetProductBannerGroupByPayload<T extends ProductBannerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProductBannerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProductBannerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProductBannerGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductBannerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProductBannerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imgUrl?: boolean
+    url?: boolean
+    alt?: boolean
+    msg?: boolean | ProductBanner$msgArgs<ExtArgs>
+  }, ExtArgs["result"]["productBanner"]>
+
+  export type ProductBannerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imgUrl?: boolean
+    url?: boolean
+    alt?: boolean
+  }, ExtArgs["result"]["productBanner"]>
+
+  export type ProductBannerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    imgUrl?: boolean
+    url?: boolean
+    alt?: boolean
+  }, ExtArgs["result"]["productBanner"]>
+
+  export type ProductBannerSelectScalar = {
+    id?: boolean
+    imgUrl?: boolean
+    url?: boolean
+    alt?: boolean
+  }
+
+  export type ProductBannerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imgUrl" | "url" | "alt", ExtArgs["result"]["productBanner"]>
+  export type ProductBannerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    msg?: boolean | ProductBanner$msgArgs<ExtArgs>
+  }
+  export type ProductBannerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ProductBannerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ProductBannerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProductBanner"
+    objects: {
+      msg: Prisma.$MsgPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      imgUrl: Prisma.JsonValue | null
+      url: string
+      alt: string
+    }, ExtArgs["result"]["productBanner"]>
+    composites: {}
+  }
+
+  type ProductBannerGetPayload<S extends boolean | null | undefined | ProductBannerDefaultArgs> = $Result.GetResult<Prisma.$ProductBannerPayload, S>
+
+  type ProductBannerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProductBannerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProductBannerCountAggregateInputType | true
+    }
+
+  export interface ProductBannerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductBanner'], meta: { name: 'ProductBanner' } }
+    /**
+     * Find zero or one ProductBanner that matches the filter.
+     * @param {ProductBannerFindUniqueArgs} args - Arguments to find a ProductBanner
+     * @example
+     * // Get one ProductBanner
+     * const productBanner = await prisma.productBanner.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProductBannerFindUniqueArgs>(args: SelectSubset<T, ProductBannerFindUniqueArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProductBanner that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProductBannerFindUniqueOrThrowArgs} args - Arguments to find a ProductBanner
+     * @example
+     * // Get one ProductBanner
+     * const productBanner = await prisma.productBanner.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProductBannerFindUniqueOrThrowArgs>(args: SelectSubset<T, ProductBannerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProductBanner that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductBannerFindFirstArgs} args - Arguments to find a ProductBanner
+     * @example
+     * // Get one ProductBanner
+     * const productBanner = await prisma.productBanner.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProductBannerFindFirstArgs>(args?: SelectSubset<T, ProductBannerFindFirstArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProductBanner that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductBannerFindFirstOrThrowArgs} args - Arguments to find a ProductBanner
+     * @example
+     * // Get one ProductBanner
+     * const productBanner = await prisma.productBanner.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProductBannerFindFirstOrThrowArgs>(args?: SelectSubset<T, ProductBannerFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProductBanners that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductBannerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProductBanners
+     * const productBanners = await prisma.productBanner.findMany()
+     * 
+     * // Get first 10 ProductBanners
+     * const productBanners = await prisma.productBanner.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const productBannerWithIdOnly = await prisma.productBanner.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProductBannerFindManyArgs>(args?: SelectSubset<T, ProductBannerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProductBanner.
+     * @param {ProductBannerCreateArgs} args - Arguments to create a ProductBanner.
+     * @example
+     * // Create one ProductBanner
+     * const ProductBanner = await prisma.productBanner.create({
+     *   data: {
+     *     // ... data to create a ProductBanner
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProductBannerCreateArgs>(args: SelectSubset<T, ProductBannerCreateArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProductBanners.
+     * @param {ProductBannerCreateManyArgs} args - Arguments to create many ProductBanners.
+     * @example
+     * // Create many ProductBanners
+     * const productBanner = await prisma.productBanner.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProductBannerCreateManyArgs>(args?: SelectSubset<T, ProductBannerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProductBanners and returns the data saved in the database.
+     * @param {ProductBannerCreateManyAndReturnArgs} args - Arguments to create many ProductBanners.
+     * @example
+     * // Create many ProductBanners
+     * const productBanner = await prisma.productBanner.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProductBanners and only return the `id`
+     * const productBannerWithIdOnly = await prisma.productBanner.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProductBannerCreateManyAndReturnArgs>(args?: SelectSubset<T, ProductBannerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProductBanner.
+     * @param {ProductBannerDeleteArgs} args - Arguments to delete one ProductBanner.
+     * @example
+     * // Delete one ProductBanner
+     * const ProductBanner = await prisma.productBanner.delete({
+     *   where: {
+     *     // ... filter to delete one ProductBanner
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProductBannerDeleteArgs>(args: SelectSubset<T, ProductBannerDeleteArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProductBanner.
+     * @param {ProductBannerUpdateArgs} args - Arguments to update one ProductBanner.
+     * @example
+     * // Update one ProductBanner
+     * const productBanner = await prisma.productBanner.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProductBannerUpdateArgs>(args: SelectSubset<T, ProductBannerUpdateArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProductBanners.
+     * @param {ProductBannerDeleteManyArgs} args - Arguments to filter ProductBanners to delete.
+     * @example
+     * // Delete a few ProductBanners
+     * const { count } = await prisma.productBanner.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProductBannerDeleteManyArgs>(args?: SelectSubset<T, ProductBannerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductBanners.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductBannerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProductBanners
+     * const productBanner = await prisma.productBanner.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProductBannerUpdateManyArgs>(args: SelectSubset<T, ProductBannerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductBanners and returns the data updated in the database.
+     * @param {ProductBannerUpdateManyAndReturnArgs} args - Arguments to update many ProductBanners.
+     * @example
+     * // Update many ProductBanners
+     * const productBanner = await prisma.productBanner.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProductBanners and only return the `id`
+     * const productBannerWithIdOnly = await prisma.productBanner.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProductBannerUpdateManyAndReturnArgs>(args: SelectSubset<T, ProductBannerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProductBanner.
+     * @param {ProductBannerUpsertArgs} args - Arguments to update or create a ProductBanner.
+     * @example
+     * // Update or create a ProductBanner
+     * const productBanner = await prisma.productBanner.upsert({
+     *   create: {
+     *     // ... data to create a ProductBanner
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProductBanner we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProductBannerUpsertArgs>(args: SelectSubset<T, ProductBannerUpsertArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProductBanners.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductBannerCountArgs} args - Arguments to filter ProductBanners to count.
+     * @example
+     * // Count the number of ProductBanners
+     * const count = await prisma.productBanner.count({
+     *   where: {
+     *     // ... the filter for the ProductBanners we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProductBannerCountArgs>(
+      args?: Subset<T, ProductBannerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProductBannerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProductBanner.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductBannerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProductBannerAggregateArgs>(args: Subset<T, ProductBannerAggregateArgs>): Prisma.PrismaPromise<GetProductBannerAggregateType<T>>
+
+    /**
+     * Group by ProductBanner.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductBannerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProductBannerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProductBannerGroupByArgs['orderBy'] }
+        : { orderBy?: ProductBannerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProductBannerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductBannerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProductBanner model
+   */
+  readonly fields: ProductBannerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProductBanner.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProductBannerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    msg<T extends ProductBanner$msgArgs<ExtArgs> = {}>(args?: Subset<T, ProductBanner$msgArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProductBanner model
+   */
+  interface ProductBannerFieldRefs {
+    readonly id: FieldRef<"ProductBanner", 'String'>
+    readonly imgUrl: FieldRef<"ProductBanner", 'Json'>
+    readonly url: FieldRef<"ProductBanner", 'String'>
+    readonly alt: FieldRef<"ProductBanner", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProductBanner findUnique
+   */
+  export type ProductBannerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductBanner to fetch.
+     */
+    where: ProductBannerWhereUniqueInput
+  }
+
+  /**
+   * ProductBanner findUniqueOrThrow
+   */
+  export type ProductBannerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductBanner to fetch.
+     */
+    where: ProductBannerWhereUniqueInput
+  }
+
+  /**
+   * ProductBanner findFirst
+   */
+  export type ProductBannerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductBanner to fetch.
+     */
+    where?: ProductBannerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductBanners to fetch.
+     */
+    orderBy?: ProductBannerOrderByWithRelationInput | ProductBannerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductBanners.
+     */
+    cursor?: ProductBannerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductBanners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductBanners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductBanners.
+     */
+    distinct?: ProductBannerScalarFieldEnum | ProductBannerScalarFieldEnum[]
+  }
+
+  /**
+   * ProductBanner findFirstOrThrow
+   */
+  export type ProductBannerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductBanner to fetch.
+     */
+    where?: ProductBannerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductBanners to fetch.
+     */
+    orderBy?: ProductBannerOrderByWithRelationInput | ProductBannerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductBanners.
+     */
+    cursor?: ProductBannerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductBanners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductBanners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductBanners.
+     */
+    distinct?: ProductBannerScalarFieldEnum | ProductBannerScalarFieldEnum[]
+  }
+
+  /**
+   * ProductBanner findMany
+   */
+  export type ProductBannerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductBanners to fetch.
+     */
+    where?: ProductBannerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductBanners to fetch.
+     */
+    orderBy?: ProductBannerOrderByWithRelationInput | ProductBannerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProductBanners.
+     */
+    cursor?: ProductBannerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductBanners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductBanners.
+     */
+    skip?: number
+    distinct?: ProductBannerScalarFieldEnum | ProductBannerScalarFieldEnum[]
+  }
+
+  /**
+   * ProductBanner create
+   */
+  export type ProductBannerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProductBanner.
+     */
+    data: XOR<ProductBannerCreateInput, ProductBannerUncheckedCreateInput>
+  }
+
+  /**
+   * ProductBanner createMany
+   */
+  export type ProductBannerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProductBanners.
+     */
+    data: ProductBannerCreateManyInput | ProductBannerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProductBanner createManyAndReturn
+   */
+  export type ProductBannerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProductBanners.
+     */
+    data: ProductBannerCreateManyInput | ProductBannerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProductBanner update
+   */
+  export type ProductBannerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProductBanner.
+     */
+    data: XOR<ProductBannerUpdateInput, ProductBannerUncheckedUpdateInput>
+    /**
+     * Choose, which ProductBanner to update.
+     */
+    where: ProductBannerWhereUniqueInput
+  }
+
+  /**
+   * ProductBanner updateMany
+   */
+  export type ProductBannerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProductBanners.
+     */
+    data: XOR<ProductBannerUpdateManyMutationInput, ProductBannerUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductBanners to update
+     */
+    where?: ProductBannerWhereInput
+    /**
+     * Limit how many ProductBanners to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProductBanner updateManyAndReturn
+   */
+  export type ProductBannerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * The data used to update ProductBanners.
+     */
+    data: XOR<ProductBannerUpdateManyMutationInput, ProductBannerUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductBanners to update
+     */
+    where?: ProductBannerWhereInput
+    /**
+     * Limit how many ProductBanners to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProductBanner upsert
+   */
+  export type ProductBannerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProductBanner to update in case it exists.
+     */
+    where: ProductBannerWhereUniqueInput
+    /**
+     * In case the ProductBanner found by the `where` argument doesn't exist, create a new ProductBanner with this data.
+     */
+    create: XOR<ProductBannerCreateInput, ProductBannerUncheckedCreateInput>
+    /**
+     * In case the ProductBanner was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProductBannerUpdateInput, ProductBannerUncheckedUpdateInput>
+  }
+
+  /**
+   * ProductBanner delete
+   */
+  export type ProductBannerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    /**
+     * Filter which ProductBanner to delete.
+     */
+    where: ProductBannerWhereUniqueInput
+  }
+
+  /**
+   * ProductBanner deleteMany
+   */
+  export type ProductBannerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductBanners to delete
+     */
+    where?: ProductBannerWhereInput
+    /**
+     * Limit how many ProductBanners to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProductBanner.msg
+   */
+  export type ProductBanner$msgArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    where?: MsgWhereInput
+  }
+
+  /**
+   * ProductBanner without action
+   */
+  export type ProductBannerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Msg
+   */
+
+  export type AggregateMsg = {
+    _count: MsgCountAggregateOutputType | null
+    _min: MsgMinAggregateOutputType | null
+    _max: MsgMaxAggregateOutputType | null
+  }
+
+  export type MsgMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    buttonText: string | null
+    bannerId: string | null
+  }
+
+  export type MsgMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    buttonText: string | null
+    bannerId: string | null
+  }
+
+  export type MsgCountAggregateOutputType = {
+    id: number
+    title: number
+    buttonText: number
+    bannerId: number
+    _all: number
+  }
+
+
+  export type MsgMinAggregateInputType = {
+    id?: true
+    title?: true
+    buttonText?: true
+    bannerId?: true
+  }
+
+  export type MsgMaxAggregateInputType = {
+    id?: true
+    title?: true
+    buttonText?: true
+    bannerId?: true
+  }
+
+  export type MsgCountAggregateInputType = {
+    id?: true
+    title?: true
+    buttonText?: true
+    bannerId?: true
+    _all?: true
+  }
+
+  export type MsgAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Msg to aggregate.
+     */
+    where?: MsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Msgs to fetch.
+     */
+    orderBy?: MsgOrderByWithRelationInput | MsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Msgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Msgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Msgs
+    **/
+    _count?: true | MsgCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MsgMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MsgMaxAggregateInputType
+  }
+
+  export type GetMsgAggregateType<T extends MsgAggregateArgs> = {
+        [P in keyof T & keyof AggregateMsg]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMsg[P]>
+      : GetScalarType<T[P], AggregateMsg[P]>
+  }
+
+
+
+
+  export type MsgGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MsgWhereInput
+    orderBy?: MsgOrderByWithAggregationInput | MsgOrderByWithAggregationInput[]
+    by: MsgScalarFieldEnum[] | MsgScalarFieldEnum
+    having?: MsgScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MsgCountAggregateInputType | true
+    _min?: MsgMinAggregateInputType
+    _max?: MsgMaxAggregateInputType
+  }
+
+  export type MsgGroupByOutputType = {
+    id: string
+    title: string
+    buttonText: string
+    bannerId: string | null
+    _count: MsgCountAggregateOutputType | null
+    _min: MsgMinAggregateOutputType | null
+    _max: MsgMaxAggregateOutputType | null
+  }
+
+  type GetMsgGroupByPayload<T extends MsgGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MsgGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MsgGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MsgGroupByOutputType[P]>
+            : GetScalarType<T[P], MsgGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MsgSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    buttonText?: boolean
+    bannerId?: boolean
+    banner?: boolean | Msg$bannerArgs<ExtArgs>
+  }, ExtArgs["result"]["msg"]>
+
+  export type MsgSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    buttonText?: boolean
+    bannerId?: boolean
+    banner?: boolean | Msg$bannerArgs<ExtArgs>
+  }, ExtArgs["result"]["msg"]>
+
+  export type MsgSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    buttonText?: boolean
+    bannerId?: boolean
+    banner?: boolean | Msg$bannerArgs<ExtArgs>
+  }, ExtArgs["result"]["msg"]>
+
+  export type MsgSelectScalar = {
+    id?: boolean
+    title?: boolean
+    buttonText?: boolean
+    bannerId?: boolean
+  }
+
+  export type MsgOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "buttonText" | "bannerId", ExtArgs["result"]["msg"]>
+  export type MsgInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    banner?: boolean | Msg$bannerArgs<ExtArgs>
+  }
+  export type MsgIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    banner?: boolean | Msg$bannerArgs<ExtArgs>
+  }
+  export type MsgIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    banner?: boolean | Msg$bannerArgs<ExtArgs>
+  }
+
+  export type $MsgPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Msg"
+    objects: {
+      banner: Prisma.$ProductBannerPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      buttonText: string
+      bannerId: string | null
+    }, ExtArgs["result"]["msg"]>
+    composites: {}
+  }
+
+  type MsgGetPayload<S extends boolean | null | undefined | MsgDefaultArgs> = $Result.GetResult<Prisma.$MsgPayload, S>
+
+  type MsgCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MsgFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MsgCountAggregateInputType | true
+    }
+
+  export interface MsgDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Msg'], meta: { name: 'Msg' } }
+    /**
+     * Find zero or one Msg that matches the filter.
+     * @param {MsgFindUniqueArgs} args - Arguments to find a Msg
+     * @example
+     * // Get one Msg
+     * const msg = await prisma.msg.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MsgFindUniqueArgs>(args: SelectSubset<T, MsgFindUniqueArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Msg that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MsgFindUniqueOrThrowArgs} args - Arguments to find a Msg
+     * @example
+     * // Get one Msg
+     * const msg = await prisma.msg.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MsgFindUniqueOrThrowArgs>(args: SelectSubset<T, MsgFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Msg that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsgFindFirstArgs} args - Arguments to find a Msg
+     * @example
+     * // Get one Msg
+     * const msg = await prisma.msg.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MsgFindFirstArgs>(args?: SelectSubset<T, MsgFindFirstArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Msg that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsgFindFirstOrThrowArgs} args - Arguments to find a Msg
+     * @example
+     * // Get one Msg
+     * const msg = await prisma.msg.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MsgFindFirstOrThrowArgs>(args?: SelectSubset<T, MsgFindFirstOrThrowArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Msgs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsgFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Msgs
+     * const msgs = await prisma.msg.findMany()
+     * 
+     * // Get first 10 Msgs
+     * const msgs = await prisma.msg.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const msgWithIdOnly = await prisma.msg.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MsgFindManyArgs>(args?: SelectSubset<T, MsgFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Msg.
+     * @param {MsgCreateArgs} args - Arguments to create a Msg.
+     * @example
+     * // Create one Msg
+     * const Msg = await prisma.msg.create({
+     *   data: {
+     *     // ... data to create a Msg
+     *   }
+     * })
+     * 
+     */
+    create<T extends MsgCreateArgs>(args: SelectSubset<T, MsgCreateArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Msgs.
+     * @param {MsgCreateManyArgs} args - Arguments to create many Msgs.
+     * @example
+     * // Create many Msgs
+     * const msg = await prisma.msg.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MsgCreateManyArgs>(args?: SelectSubset<T, MsgCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Msgs and returns the data saved in the database.
+     * @param {MsgCreateManyAndReturnArgs} args - Arguments to create many Msgs.
+     * @example
+     * // Create many Msgs
+     * const msg = await prisma.msg.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Msgs and only return the `id`
+     * const msgWithIdOnly = await prisma.msg.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MsgCreateManyAndReturnArgs>(args?: SelectSubset<T, MsgCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Msg.
+     * @param {MsgDeleteArgs} args - Arguments to delete one Msg.
+     * @example
+     * // Delete one Msg
+     * const Msg = await prisma.msg.delete({
+     *   where: {
+     *     // ... filter to delete one Msg
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MsgDeleteArgs>(args: SelectSubset<T, MsgDeleteArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Msg.
+     * @param {MsgUpdateArgs} args - Arguments to update one Msg.
+     * @example
+     * // Update one Msg
+     * const msg = await prisma.msg.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MsgUpdateArgs>(args: SelectSubset<T, MsgUpdateArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Msgs.
+     * @param {MsgDeleteManyArgs} args - Arguments to filter Msgs to delete.
+     * @example
+     * // Delete a few Msgs
+     * const { count } = await prisma.msg.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MsgDeleteManyArgs>(args?: SelectSubset<T, MsgDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Msgs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsgUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Msgs
+     * const msg = await prisma.msg.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MsgUpdateManyArgs>(args: SelectSubset<T, MsgUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Msgs and returns the data updated in the database.
+     * @param {MsgUpdateManyAndReturnArgs} args - Arguments to update many Msgs.
+     * @example
+     * // Update many Msgs
+     * const msg = await prisma.msg.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Msgs and only return the `id`
+     * const msgWithIdOnly = await prisma.msg.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MsgUpdateManyAndReturnArgs>(args: SelectSubset<T, MsgUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Msg.
+     * @param {MsgUpsertArgs} args - Arguments to update or create a Msg.
+     * @example
+     * // Update or create a Msg
+     * const msg = await prisma.msg.upsert({
+     *   create: {
+     *     // ... data to create a Msg
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Msg we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MsgUpsertArgs>(args: SelectSubset<T, MsgUpsertArgs<ExtArgs>>): Prisma__MsgClient<$Result.GetResult<Prisma.$MsgPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Msgs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsgCountArgs} args - Arguments to filter Msgs to count.
+     * @example
+     * // Count the number of Msgs
+     * const count = await prisma.msg.count({
+     *   where: {
+     *     // ... the filter for the Msgs we want to count
+     *   }
+     * })
+    **/
+    count<T extends MsgCountArgs>(
+      args?: Subset<T, MsgCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MsgCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Msg.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsgAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MsgAggregateArgs>(args: Subset<T, MsgAggregateArgs>): Prisma.PrismaPromise<GetMsgAggregateType<T>>
+
+    /**
+     * Group by Msg.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MsgGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MsgGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MsgGroupByArgs['orderBy'] }
+        : { orderBy?: MsgGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MsgGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMsgGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Msg model
+   */
+  readonly fields: MsgFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Msg.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MsgClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    banner<T extends Msg$bannerArgs<ExtArgs> = {}>(args?: Subset<T, Msg$bannerArgs<ExtArgs>>): Prisma__ProductBannerClient<$Result.GetResult<Prisma.$ProductBannerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Msg model
+   */
+  interface MsgFieldRefs {
+    readonly id: FieldRef<"Msg", 'String'>
+    readonly title: FieldRef<"Msg", 'String'>
+    readonly buttonText: FieldRef<"Msg", 'String'>
+    readonly bannerId: FieldRef<"Msg", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Msg findUnique
+   */
+  export type MsgFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * Filter, which Msg to fetch.
+     */
+    where: MsgWhereUniqueInput
+  }
+
+  /**
+   * Msg findUniqueOrThrow
+   */
+  export type MsgFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * Filter, which Msg to fetch.
+     */
+    where: MsgWhereUniqueInput
+  }
+
+  /**
+   * Msg findFirst
+   */
+  export type MsgFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * Filter, which Msg to fetch.
+     */
+    where?: MsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Msgs to fetch.
+     */
+    orderBy?: MsgOrderByWithRelationInput | MsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Msgs.
+     */
+    cursor?: MsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Msgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Msgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Msgs.
+     */
+    distinct?: MsgScalarFieldEnum | MsgScalarFieldEnum[]
+  }
+
+  /**
+   * Msg findFirstOrThrow
+   */
+  export type MsgFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * Filter, which Msg to fetch.
+     */
+    where?: MsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Msgs to fetch.
+     */
+    orderBy?: MsgOrderByWithRelationInput | MsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Msgs.
+     */
+    cursor?: MsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Msgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Msgs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Msgs.
+     */
+    distinct?: MsgScalarFieldEnum | MsgScalarFieldEnum[]
+  }
+
+  /**
+   * Msg findMany
+   */
+  export type MsgFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * Filter, which Msgs to fetch.
+     */
+    where?: MsgWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Msgs to fetch.
+     */
+    orderBy?: MsgOrderByWithRelationInput | MsgOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Msgs.
+     */
+    cursor?: MsgWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Msgs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Msgs.
+     */
+    skip?: number
+    distinct?: MsgScalarFieldEnum | MsgScalarFieldEnum[]
+  }
+
+  /**
+   * Msg create
+   */
+  export type MsgCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Msg.
+     */
+    data: XOR<MsgCreateInput, MsgUncheckedCreateInput>
+  }
+
+  /**
+   * Msg createMany
+   */
+  export type MsgCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Msgs.
+     */
+    data: MsgCreateManyInput | MsgCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Msg createManyAndReturn
+   */
+  export type MsgCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * The data used to create many Msgs.
+     */
+    data: MsgCreateManyInput | MsgCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Msg update
+   */
+  export type MsgUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Msg.
+     */
+    data: XOR<MsgUpdateInput, MsgUncheckedUpdateInput>
+    /**
+     * Choose, which Msg to update.
+     */
+    where: MsgWhereUniqueInput
+  }
+
+  /**
+   * Msg updateMany
+   */
+  export type MsgUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Msgs.
+     */
+    data: XOR<MsgUpdateManyMutationInput, MsgUncheckedUpdateManyInput>
+    /**
+     * Filter which Msgs to update
+     */
+    where?: MsgWhereInput
+    /**
+     * Limit how many Msgs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Msg updateManyAndReturn
+   */
+  export type MsgUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * The data used to update Msgs.
+     */
+    data: XOR<MsgUpdateManyMutationInput, MsgUncheckedUpdateManyInput>
+    /**
+     * Filter which Msgs to update
+     */
+    where?: MsgWhereInput
+    /**
+     * Limit how many Msgs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Msg upsert
+   */
+  export type MsgUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Msg to update in case it exists.
+     */
+    where: MsgWhereUniqueInput
+    /**
+     * In case the Msg found by the `where` argument doesn't exist, create a new Msg with this data.
+     */
+    create: XOR<MsgCreateInput, MsgUncheckedCreateInput>
+    /**
+     * In case the Msg was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MsgUpdateInput, MsgUncheckedUpdateInput>
+  }
+
+  /**
+   * Msg delete
+   */
+  export type MsgDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+    /**
+     * Filter which Msg to delete.
+     */
+    where: MsgWhereUniqueInput
+  }
+
+  /**
+   * Msg deleteMany
+   */
+  export type MsgDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Msgs to delete
+     */
+    where?: MsgWhereInput
+    /**
+     * Limit how many Msgs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Msg.banner
+   */
+  export type Msg$bannerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductBanner
+     */
+    select?: ProductBannerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductBanner
+     */
+    omit?: ProductBannerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductBannerInclude<ExtArgs> | null
+    where?: ProductBannerWhereInput
+  }
+
+  /**
+   * Msg without action
+   */
+  export type MsgDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Msg
+     */
+    select?: MsgSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Msg
+     */
+    omit?: MsgOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MsgInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -13982,6 +16274,26 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const ProductBannerScalarFieldEnum: {
+    id: 'id',
+    imgUrl: 'imgUrl',
+    url: 'url',
+    alt: 'alt'
+  };
+
+  export type ProductBannerScalarFieldEnum = (typeof ProductBannerScalarFieldEnum)[keyof typeof ProductBannerScalarFieldEnum]
+
+
+  export const MsgScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    buttonText: 'buttonText',
+    bannerId: 'bannerId'
+  };
+
+  export type MsgScalarFieldEnum = (typeof MsgScalarFieldEnum)[keyof typeof MsgScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14808,6 +17120,106 @@ export namespace Prisma {
     role?: EnumuserRoleWithAggregatesFilter<"User"> | $Enums.userRole
   }
 
+  export type ProductBannerWhereInput = {
+    AND?: ProductBannerWhereInput | ProductBannerWhereInput[]
+    OR?: ProductBannerWhereInput[]
+    NOT?: ProductBannerWhereInput | ProductBannerWhereInput[]
+    id?: StringFilter<"ProductBanner"> | string
+    imgUrl?: JsonNullableFilter<"ProductBanner">
+    url?: StringFilter<"ProductBanner"> | string
+    alt?: StringFilter<"ProductBanner"> | string
+    msg?: XOR<MsgNullableScalarRelationFilter, MsgWhereInput> | null
+  }
+
+  export type ProductBannerOrderByWithRelationInput = {
+    id?: SortOrder
+    imgUrl?: SortOrderInput | SortOrder
+    url?: SortOrder
+    alt?: SortOrder
+    msg?: MsgOrderByWithRelationInput
+  }
+
+  export type ProductBannerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProductBannerWhereInput | ProductBannerWhereInput[]
+    OR?: ProductBannerWhereInput[]
+    NOT?: ProductBannerWhereInput | ProductBannerWhereInput[]
+    imgUrl?: JsonNullableFilter<"ProductBanner">
+    url?: StringFilter<"ProductBanner"> | string
+    alt?: StringFilter<"ProductBanner"> | string
+    msg?: XOR<MsgNullableScalarRelationFilter, MsgWhereInput> | null
+  }, "id">
+
+  export type ProductBannerOrderByWithAggregationInput = {
+    id?: SortOrder
+    imgUrl?: SortOrderInput | SortOrder
+    url?: SortOrder
+    alt?: SortOrder
+    _count?: ProductBannerCountOrderByAggregateInput
+    _max?: ProductBannerMaxOrderByAggregateInput
+    _min?: ProductBannerMinOrderByAggregateInput
+  }
+
+  export type ProductBannerScalarWhereWithAggregatesInput = {
+    AND?: ProductBannerScalarWhereWithAggregatesInput | ProductBannerScalarWhereWithAggregatesInput[]
+    OR?: ProductBannerScalarWhereWithAggregatesInput[]
+    NOT?: ProductBannerScalarWhereWithAggregatesInput | ProductBannerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProductBanner"> | string
+    imgUrl?: JsonNullableWithAggregatesFilter<"ProductBanner">
+    url?: StringWithAggregatesFilter<"ProductBanner"> | string
+    alt?: StringWithAggregatesFilter<"ProductBanner"> | string
+  }
+
+  export type MsgWhereInput = {
+    AND?: MsgWhereInput | MsgWhereInput[]
+    OR?: MsgWhereInput[]
+    NOT?: MsgWhereInput | MsgWhereInput[]
+    id?: StringFilter<"Msg"> | string
+    title?: StringFilter<"Msg"> | string
+    buttonText?: StringFilter<"Msg"> | string
+    bannerId?: StringNullableFilter<"Msg"> | string | null
+    banner?: XOR<ProductBannerNullableScalarRelationFilter, ProductBannerWhereInput> | null
+  }
+
+  export type MsgOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    buttonText?: SortOrder
+    bannerId?: SortOrderInput | SortOrder
+    banner?: ProductBannerOrderByWithRelationInput
+  }
+
+  export type MsgWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    bannerId?: string
+    AND?: MsgWhereInput | MsgWhereInput[]
+    OR?: MsgWhereInput[]
+    NOT?: MsgWhereInput | MsgWhereInput[]
+    title?: StringFilter<"Msg"> | string
+    buttonText?: StringFilter<"Msg"> | string
+    banner?: XOR<ProductBannerNullableScalarRelationFilter, ProductBannerWhereInput> | null
+  }, "id" | "bannerId">
+
+  export type MsgOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    buttonText?: SortOrder
+    bannerId?: SortOrderInput | SortOrder
+    _count?: MsgCountOrderByAggregateInput
+    _max?: MsgMaxOrderByAggregateInput
+    _min?: MsgMinOrderByAggregateInput
+  }
+
+  export type MsgScalarWhereWithAggregatesInput = {
+    AND?: MsgScalarWhereWithAggregatesInput | MsgScalarWhereWithAggregatesInput[]
+    OR?: MsgScalarWhereWithAggregatesInput[]
+    NOT?: MsgScalarWhereWithAggregatesInput | MsgScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Msg"> | string
+    title?: StringWithAggregatesFilter<"Msg"> | string
+    buttonText?: StringWithAggregatesFilter<"Msg"> | string
+    bannerId?: StringNullableWithAggregatesFilter<"Msg"> | string | null
+  }
+
   export type CategoryCreateInput = {
     id?: string
     parentID?: string | null
@@ -15456,6 +17868,107 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumuserStatusFieldUpdateOperationsInput | $Enums.userStatus
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+  }
+
+  export type ProductBannerCreateInput = {
+    id?: string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url: string
+    alt: string
+    msg?: MsgCreateNestedOneWithoutBannerInput
+  }
+
+  export type ProductBannerUncheckedCreateInput = {
+    id?: string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url: string
+    alt: string
+    msg?: MsgUncheckedCreateNestedOneWithoutBannerInput
+  }
+
+  export type ProductBannerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    msg?: MsgUpdateOneWithoutBannerNestedInput
+  }
+
+  export type ProductBannerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+    msg?: MsgUncheckedUpdateOneWithoutBannerNestedInput
+  }
+
+  export type ProductBannerCreateManyInput = {
+    id?: string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url: string
+    alt: string
+  }
+
+  export type ProductBannerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductBannerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MsgCreateInput = {
+    id?: string
+    title: string
+    buttonText: string
+    banner?: ProductBannerCreateNestedOneWithoutMsgInput
+  }
+
+  export type MsgUncheckedCreateInput = {
+    id?: string
+    title: string
+    buttonText: string
+    bannerId?: string | null
+  }
+
+  export type MsgUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    banner?: ProductBannerUpdateOneWithoutMsgNestedInput
+  }
+
+  export type MsgUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    bannerId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MsgCreateManyInput = {
+    id?: string
+    title: string
+    buttonText: string
+    bannerId?: string | null
+  }
+
+  export type MsgUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MsgUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+    bannerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -16183,6 +18696,56 @@ export namespace Prisma {
     _max?: NestedEnumuserRoleFilter<$PrismaModel>
   }
 
+  export type MsgNullableScalarRelationFilter = {
+    is?: MsgWhereInput | null
+    isNot?: MsgWhereInput | null
+  }
+
+  export type ProductBannerCountOrderByAggregateInput = {
+    id?: SortOrder
+    imgUrl?: SortOrder
+    url?: SortOrder
+    alt?: SortOrder
+  }
+
+  export type ProductBannerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    alt?: SortOrder
+  }
+
+  export type ProductBannerMinOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    alt?: SortOrder
+  }
+
+  export type ProductBannerNullableScalarRelationFilter = {
+    is?: ProductBannerWhereInput | null
+    isNot?: ProductBannerWhereInput | null
+  }
+
+  export type MsgCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    buttonText?: SortOrder
+    bannerId?: SortOrder
+  }
+
+  export type MsgMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    buttonText?: SortOrder
+    bannerId?: SortOrder
+  }
+
+  export type MsgMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    buttonText?: SortOrder
+    bannerId?: SortOrder
+  }
+
   export type Category_OptionSetCreateNestedManyWithoutCategoryInput = {
     create?: XOR<Category_OptionSetCreateWithoutCategoryInput, Category_OptionSetUncheckedCreateWithoutCategoryInput> | Category_OptionSetCreateWithoutCategoryInput[] | Category_OptionSetUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: Category_OptionSetCreateOrConnectWithoutCategoryInput | Category_OptionSetCreateOrConnectWithoutCategoryInput[]
@@ -16775,6 +19338,54 @@ export namespace Prisma {
 
   export type EnumuserRoleFieldUpdateOperationsInput = {
     set?: $Enums.userRole
+  }
+
+  export type MsgCreateNestedOneWithoutBannerInput = {
+    create?: XOR<MsgCreateWithoutBannerInput, MsgUncheckedCreateWithoutBannerInput>
+    connectOrCreate?: MsgCreateOrConnectWithoutBannerInput
+    connect?: MsgWhereUniqueInput
+  }
+
+  export type MsgUncheckedCreateNestedOneWithoutBannerInput = {
+    create?: XOR<MsgCreateWithoutBannerInput, MsgUncheckedCreateWithoutBannerInput>
+    connectOrCreate?: MsgCreateOrConnectWithoutBannerInput
+    connect?: MsgWhereUniqueInput
+  }
+
+  export type MsgUpdateOneWithoutBannerNestedInput = {
+    create?: XOR<MsgCreateWithoutBannerInput, MsgUncheckedCreateWithoutBannerInput>
+    connectOrCreate?: MsgCreateOrConnectWithoutBannerInput
+    upsert?: MsgUpsertWithoutBannerInput
+    disconnect?: MsgWhereInput | boolean
+    delete?: MsgWhereInput | boolean
+    connect?: MsgWhereUniqueInput
+    update?: XOR<XOR<MsgUpdateToOneWithWhereWithoutBannerInput, MsgUpdateWithoutBannerInput>, MsgUncheckedUpdateWithoutBannerInput>
+  }
+
+  export type MsgUncheckedUpdateOneWithoutBannerNestedInput = {
+    create?: XOR<MsgCreateWithoutBannerInput, MsgUncheckedCreateWithoutBannerInput>
+    connectOrCreate?: MsgCreateOrConnectWithoutBannerInput
+    upsert?: MsgUpsertWithoutBannerInput
+    disconnect?: MsgWhereInput | boolean
+    delete?: MsgWhereInput | boolean
+    connect?: MsgWhereUniqueInput
+    update?: XOR<XOR<MsgUpdateToOneWithWhereWithoutBannerInput, MsgUpdateWithoutBannerInput>, MsgUncheckedUpdateWithoutBannerInput>
+  }
+
+  export type ProductBannerCreateNestedOneWithoutMsgInput = {
+    create?: XOR<ProductBannerCreateWithoutMsgInput, ProductBannerUncheckedCreateWithoutMsgInput>
+    connectOrCreate?: ProductBannerCreateOrConnectWithoutMsgInput
+    connect?: ProductBannerWhereUniqueInput
+  }
+
+  export type ProductBannerUpdateOneWithoutMsgNestedInput = {
+    create?: XOR<ProductBannerCreateWithoutMsgInput, ProductBannerUncheckedCreateWithoutMsgInput>
+    connectOrCreate?: ProductBannerCreateOrConnectWithoutMsgInput
+    upsert?: ProductBannerUpsertWithoutMsgInput
+    disconnect?: ProductBannerWhereInput | boolean
+    delete?: ProductBannerWhereInput | boolean
+    connect?: ProductBannerWhereUniqueInput
+    update?: XOR<XOR<ProductBannerUpdateToOneWithWhereWithoutMsgInput, ProductBannerUpdateWithoutMsgInput>, ProductBannerUncheckedUpdateWithoutMsgInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -18016,6 +20627,90 @@ export namespace Prisma {
     specs?: NullableJsonNullValueInput | InputJsonValue
     brandID?: StringFieldUpdateOperationsInput | string
     ProductSpec?: ProductSpecUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type MsgCreateWithoutBannerInput = {
+    id?: string
+    title: string
+    buttonText: string
+  }
+
+  export type MsgUncheckedCreateWithoutBannerInput = {
+    id?: string
+    title: string
+    buttonText: string
+  }
+
+  export type MsgCreateOrConnectWithoutBannerInput = {
+    where: MsgWhereUniqueInput
+    create: XOR<MsgCreateWithoutBannerInput, MsgUncheckedCreateWithoutBannerInput>
+  }
+
+  export type MsgUpsertWithoutBannerInput = {
+    update: XOR<MsgUpdateWithoutBannerInput, MsgUncheckedUpdateWithoutBannerInput>
+    create: XOR<MsgCreateWithoutBannerInput, MsgUncheckedCreateWithoutBannerInput>
+    where?: MsgWhereInput
+  }
+
+  export type MsgUpdateToOneWithWhereWithoutBannerInput = {
+    where?: MsgWhereInput
+    data: XOR<MsgUpdateWithoutBannerInput, MsgUncheckedUpdateWithoutBannerInput>
+  }
+
+  export type MsgUpdateWithoutBannerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MsgUncheckedUpdateWithoutBannerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    buttonText?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductBannerCreateWithoutMsgInput = {
+    id?: string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url: string
+    alt: string
+  }
+
+  export type ProductBannerUncheckedCreateWithoutMsgInput = {
+    id?: string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url: string
+    alt: string
+  }
+
+  export type ProductBannerCreateOrConnectWithoutMsgInput = {
+    where: ProductBannerWhereUniqueInput
+    create: XOR<ProductBannerCreateWithoutMsgInput, ProductBannerUncheckedCreateWithoutMsgInput>
+  }
+
+  export type ProductBannerUpsertWithoutMsgInput = {
+    update: XOR<ProductBannerUpdateWithoutMsgInput, ProductBannerUncheckedUpdateWithoutMsgInput>
+    create: XOR<ProductBannerCreateWithoutMsgInput, ProductBannerUncheckedCreateWithoutMsgInput>
+    where?: ProductBannerWhereInput
+  }
+
+  export type ProductBannerUpdateToOneWithWhereWithoutMsgInput = {
+    where?: ProductBannerWhereInput
+    data: XOR<ProductBannerUpdateWithoutMsgInput, ProductBannerUncheckedUpdateWithoutMsgInput>
+  }
+
+  export type ProductBannerUpdateWithoutMsgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductBannerUncheckedUpdateWithoutMsgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imgUrl?: NullableJsonNullValueInput | InputJsonValue
+    url?: StringFieldUpdateOperationsInput | string
+    alt?: StringFieldUpdateOperationsInput | string
   }
 
   export type Category_OptionSetCreateManyCategoryInput = {

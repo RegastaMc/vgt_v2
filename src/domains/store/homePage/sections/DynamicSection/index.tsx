@@ -23,7 +23,6 @@ export default function DynamicSection() {
       if (cat.parentID) {
         categories.push(cat);
         return;
-      } else if (cat.products.length > 0) {
       }
 
       groups.push(cat);
@@ -38,7 +37,7 @@ export default function DynamicSection() {
     <div>
       {" "}
       {validGroups.map((group) => (
-        <DynamicCards title={group.name} key={group.id} name={group.name} />
+        <DynamicCards title={group.name} key={group.id} name={group.url as string} />
       ))}
     </div>
   );

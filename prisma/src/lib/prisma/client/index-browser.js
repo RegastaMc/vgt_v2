@@ -210,6 +210,20 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role'
 };
 
+exports.Prisma.ProductBannerScalarFieldEnum = {
+  id: 'id',
+  imgUrl: 'imgUrl',
+  url: 'url',
+  alt: 'alt'
+};
+
+exports.Prisma.MsgScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  buttonText: 'buttonText',
+  bannerId: 'bannerId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -273,7 +287,9 @@ exports.Prisma.ModelName = {
   ProductSpec: 'ProductSpec',
   Brand: 'Brand',
   PageVisit: 'PageVisit',
-  User: 'User'
+  User: 'User',
+  ProductBanner: 'ProductBanner',
+  Msg: 'Msg'
 };
 
 /**

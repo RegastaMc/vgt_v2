@@ -2,9 +2,11 @@ import Link from "next/link";
 
 type TProps = {
   pageHeader: string;
+  subCategories?: { label: string; url: string }[];
+  pathName?: string;
 };
 
-const NoItem = ({ pageHeader }: TProps) => {
+const NoItem = ({ pageHeader, subCategories, pathName }: TProps) => {
   return (
     <div
       className={
@@ -13,33 +15,21 @@ const NoItem = ({ pageHeader }: TProps) => {
     >
       <span> There is no product in {pageHeader} category!</span>
       <div className="text-sm flex flex-col gap-4">
-        <span className="w-full text-center"> You Can Check These Categories Instead:</span>
-        <div className="flex gap-3 items-center justify-center">
-          <Link
-            className="border border-gray-300 px-4 py-1 rounded-md transition-colors duration-300 hover:bg-gray-100"
-            href={"/list/pc-laptops/computer"}
-          >
-            Computers
-          </Link>
-          <Link
-            className="border border-gray-300 px-4 py-1 rounded-md transition-colors duration-300 hover:bg-gray-100"
-            href={"/list/pc-laptops/laptops"}
-          >
-            Laptop
-          </Link>
-          <Link
-            className="border border-gray-300 px-4 py-1 rounded-md transition-colors duration-300 hover:bg-gray-100"
-            href={"/list/smartphones"}
-          >
-            Mobile
-          </Link>
-          <Link
-            className="border border-gray-300 px-4 py-1 rounded-md transition-colors duration-300 hover:bg-gray-100"
-            href={"/list/tablets"}
-          >
-            Tablet
-          </Link>
-        </div>
+        {subCategories && subCategories.length > 0 && (
+          <>
+            <span className="w-full text-center"> You Can Check These Categories Instead:</span>
+            <div className="flex gap-3 items-center justify-center">
+              {subCategories?.map((cat) => (
+                <Link
+                  className="border border-gray-300 px-4 py-1 rounded-md transition-colors duration-300 hover:bg-gray-100"
+                  href={pathName + "/" + cat.url}
+                >
+                  {cat.label}
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

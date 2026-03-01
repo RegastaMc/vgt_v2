@@ -151,3 +151,19 @@ model User {
   status userStatus @default(ACTIVE)
   role   userRole   @default(USER)
 }
+
+model ProductBanner {
+  id     String @id @default(cuid())
+  imgUrl Json?
+  url    String
+  alt    String
+  msg    Msg?
+}
+
+model Msg {
+  id         String         @id @default(cuid())
+  title      String
+  buttonText String
+  banner     ProductBanner? @relation(fields: [bannerId], references: [id])
+  bannerId   String?        @unique
+}

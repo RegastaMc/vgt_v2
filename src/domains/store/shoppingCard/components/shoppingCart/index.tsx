@@ -12,6 +12,7 @@ import { cn } from "@/shared/utils/styling";
 import { RootState } from "@/store/shoppingCart";
 
 import CartItem from "./_components/cartItem";
+import { useRouter } from "next/navigation";
 
 type TProps = {
   isVisible: boolean;
@@ -22,6 +23,7 @@ type TProps = {
 const ShoppingCart = ({ isVisible, quantity, handleOnClose }: TProps) => {
   const [cartItems, setCartItems] = useState<TCartItemData[]>();
   const localCartItems = useSelector((state: RootState) => state.cart);
+  const router = useRouter();
 
   useEffect(() => {
     const convertDBtoCartItems = (rawData: TCartListItemDB[]) => {
@@ -95,8 +97,20 @@ const ShoppingCart = ({ isVisible, quantity, handleOnClose }: TProps) => {
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-[140px] bg-white border-t border-gray-300 flex flex-col items-center justify-center gap-4 mx-6">
           {!!cartItems?.length && (
-            <Button className="w-4/5 text-sm font-semibold text-green-700 border-green-300 bg-green-50">
+            <Button
+              onClick={() => router.push("/checkout")}
+              className="w-4/5 text-sm font-semibold text-green-700 border-green-300 bg-green-50"
+            >
               CHECKOUT
+            </Button>
+          )}
+
+          {!!cartItems?.length && (
+            <Button
+              onClick={() => router.push("/cart")}
+              className="w-4/5 text-sm font-semibold text-green-700 border-green-300 bg-green-50"
+            >
+              View Cart
             </Button>
           )}
           <Button

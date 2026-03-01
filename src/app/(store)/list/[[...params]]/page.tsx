@@ -46,10 +46,7 @@ const ListPage = () => {
       setIsListLoading(true);
 
       const response = await getList(pathName, SORT_DATA[sortIndex], appliedFilters);
-      toast.error(response.error || "An error occurred while fetching products", {
-        duration: 4000,
-        position: "bottom-center",
-      });
+
       if (response.error || !response.products || !response.subCategories) return router.push("/");
 
       const transformedProducts = response.products.map((product) => ({
@@ -73,7 +70,7 @@ const ListPage = () => {
     getProductsList();
   }, [router, pathName, sortIndex, appliedFilters, isFilterApplied]);
 
-  // if (!params || !params.length) router.push("/");
+  if (!params || !params.length) router.push("/");
 
   const handleSortChange = (newIndex: number) => {
     setSortIndex(newIndex);
@@ -189,7 +186,7 @@ const ListPage = () => {
         ))}
       </div>
     ),
-    categoryHasNoProduct: <NoItem pageHeader={getPageHeader()} />,
+    categoryHasNoProduct: <NoItem pageHeader={getPageHeader()} pathName={pathName} subCategories={subCategories} />,
     filterHasNoProduct: (
       <div className="flex flex-col items-center justify-center text-sm min-h-[400px] gap-4">
         <span> There is no product!</span>
