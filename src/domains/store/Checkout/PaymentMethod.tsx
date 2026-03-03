@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import PaymentModal from "../payment/PaymentModal";
 
-const PaymentMethod = () => {
+const PaymentMethod = ({ amount }: { amount: number }) => {
   const [payment, setPayment] = useState("bank");
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+
   return (
     <div className="bg-white shadow-1 rounded-[10px] mt-7.5">
       <div className="border-b border-gray-3 py-5 px-4 sm:px-8.5">
@@ -96,6 +99,23 @@ const PaymentMethod = () => {
               </div>
             </div>
           </label>
+
+          <button
+            type="button"
+            onClick={() => setShowPaymentModal(true)}
+            className="w-full flex justify-center font-medium text-white cursor-pointer py-3 px-6 bg-blue-400 rounded-md ease-out duration-200 hover:bg-blue-600 mt-7.5"
+          >
+            Pay And Place Order
+          </button>
+          {showPaymentModal && (
+            <PaymentModal
+              isOpen={showPaymentModal}
+              onClose={() => setShowPaymentModal(false)}
+              paymentMethodId={payment}
+              orderId={"123456"} //
+              amount={amount}
+            />
+          )}
         </div>
       </div>
     </div>

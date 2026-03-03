@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { DynamicCards } from "../../components/DynamicCategories";
 import { getAllCategories, TGetAllCategories } from "@/actions/category/category";
+import { TProductListItem } from "@/shared/types/product";
 
-export default function DynamicSection() {
+export default function DynamicSection({ productsList }: { productsList: TProductListItem[] }) {
   const [allCategories, setAllCategories] = useState<TGetAllCategories[]>([]);
 
   const getData = async () => {
@@ -37,7 +38,7 @@ export default function DynamicSection() {
     <div>
       {" "}
       {validGroups.map((group) => (
-        <DynamicCards title={group.name} key={group.id} name={group.url as string} />
+        <DynamicCards title={group.name} key={group.id} name={group.url as string} productsList={productsList} />
       ))}
     </div>
   );

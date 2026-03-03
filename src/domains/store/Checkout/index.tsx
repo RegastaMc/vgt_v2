@@ -153,15 +153,17 @@ const Checkout = () => {
                 <ShippingMethod />
 
                 {/* <!-- payment box --> */}
-                <PaymentMethod />
+                <PaymentMethod
+                  amount={(cartItems?.reduce((acc, item) => acc + item?.price * item?.quantity, 0) ?? 0) + 15}
+                />
 
                 {/* <!-- checkout button --> */}
-                <button
+                {/* <button
                   type="submit"
-                  className="w-full flex justify-center font-medium text-white bg-blue py-3 px-6 rounded-md ease-out duration-200 hover:bg-blue-500 mt-7.5"
+                  className="w-full flex justify-center font-medium text-white bg-blue py-3 px-6 bg-blue-500 rounded-md ease-out duration-200 hover:bg-blue-600 mt-7.5"
                 >
                   Process to Checkout
-                </button>
+                </button> */}
               </div>
             </div>
           </form>

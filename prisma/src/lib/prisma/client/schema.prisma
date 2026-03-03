@@ -150,6 +150,7 @@ model User {
 
   status userStatus @default(ACTIVE)
   role   userRole   @default(USER)
+  orders Order[]
 }
 
 model ProductBanner {
@@ -166,4 +167,60 @@ model Msg {
   buttonText String
   banner     ProductBanner? @relation(fields: [bannerId], references: [id])
   bannerId   String?        @unique
+}
+
+model Order {
+  id          String @id @default(cuid())
+  orderNumber String @unique
+  userId      String
+  user        User   @relation(fields: [userId], references: [id])
+
+  items OrderItem[]
+
+  status        OrderStatus   @default(PENDING)
+  paymentStatus PaymentStatus @default(PENDING)
+
+  subtotal    Float
+  tax         Float
+  shippingFee Float
+  total       Float
+
+  phone String
+  email String
+
+  shippingAddress Json
+
+  paidAt      DateTime?
+  deliveredAt DateTime?
+  cancelledAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OrderItem {
+  id      String @id @default(cuid())
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id])
+
+  productId String
+  name      String
+  price     Float
+  quantity  Int
+  image     String?
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
 }

@@ -7,18 +7,15 @@ import { getAllProducts } from "@/actions/product/product";
 import { TProductListItem } from "@/shared/types/product";
 import ProductCard from "@/domains/product/components/productCard";
 
-export const DynamicCards = ({ title, name }: { title: string; name: string }) => {
-  const [productsList, setProductsList] = useState<any[]>([]);
-
-  useEffect(() => {
-    getProductsList();
-  }, []);
-
-  const getProductsList = async () => {
-    const response = await getAllProducts();
-    if (response.res) setProductsList(response.res);
-  };
-
+export const DynamicCards = ({
+  title,
+  name,
+  productsList,
+}: {
+  title: string;
+  name: string;
+  productsList: TProductListItem[];
+}) => {
   return (
     <div className="w-full mt-14 ">
       <div className="flex w-full justify-between items-center mb-7">

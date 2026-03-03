@@ -224,6 +224,36 @@ exports.Prisma.MsgScalarFieldEnum = {
   bannerId: 'bannerId'
 };
 
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  orderNumber: 'orderNumber',
+  userId: 'userId',
+  status: 'status',
+  paymentStatus: 'paymentStatus',
+  subtotal: 'subtotal',
+  tax: 'tax',
+  shippingFee: 'shippingFee',
+  total: 'total',
+  phone: 'phone',
+  email: 'email',
+  shippingAddress: 'shippingAddress',
+  paidAt: 'paidAt',
+  deliveredAt: 'deliveredAt',
+  cancelledAt: 'cancelledAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  name: 'name',
+  price: 'price',
+  quantity: 'quantity',
+  image: 'image'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -276,6 +306,21 @@ exports.userRole = exports.$Enums.userRole = {
   USER: 'USER'
 };
 
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  SHIPPED: 'SHIPPED',
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.PaymentStatus = exports.$Enums.PaymentStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
+};
+
 exports.Prisma.ModelName = {
   Category: 'Category',
   Category_OptionSet: 'Category_OptionSet',
@@ -289,7 +334,9 @@ exports.Prisma.ModelName = {
   PageVisit: 'PageVisit',
   User: 'User',
   ProductBanner: 'ProductBanner',
-  Msg: 'Msg'
+  Msg: 'Msg',
+  Order: 'Order',
+  OrderItem: 'OrderItem'
 };
 
 /**
