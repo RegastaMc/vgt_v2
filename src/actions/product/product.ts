@@ -92,12 +92,76 @@ export const addProduct = async (data: TAddProductFormValues) => {
   }
 };
 
+export const editProduct = async (data: TAddProductFormValues, productID: string) => {
+  if (!ValidateAddProduct.safeParse(data).success) return { error: "Invalid Data!" };
+
+  try {
+    const price = convertStringToFloat(data.price);
+    const salePrice = data.salePrice ? convertStringToFloat(data.salePrice) : null;
+
+    if (data.brandID === "none") return { error: "Please select a brand!" };
+    if (data.categoryID === "none") return { error: "Please select a category!" };
+
+    if (data.images.length > 5) {
+      return { error: "You can only add up to 5 images" };
+    }
+    if (price < 0) {
+      return { error: "Price can't be negative" };
+    }
+    if (salePrice !== null && salePrice < 0) {
+      return { error: "Sale Price can't be negative" };
+    }
+    if (salePrice !== null && salePrice >= price) {
+      return { error: "Sale Price must be less than the original price" };
+    }
+    if (!salePrice && salePrice !== 0) {
+      return { error: "Please enter a sale price or leave it empty" };
+    }
+    if (!data.images || data.images.length === 0) {
+      return { error: "Please upload at least one image" };
+    }
+
+    const result = db.category.update({
+      where: {
+        id: data.categoryID,
+      },
+      data: {
+        products: {
+          update: {
+            where: {
+              id: productID,
+            },
+            data: {
+              name: data.name,
+              desc: data.desc,
+              brandID: data.brandID,
+              specialFeatures: data.specialFeatures,
+              isAvailable: data.isAvailable,
+              price: price,
+              salePrice: salePrice,
+              images: data.images as unknown as object,
+              specs: data.specifications,
+            },
+          },
+        },
+      },
+    });
+    if (!result) return { error: "Can't Update Data" };
+    return { res: result };
+  } catch (error) {
+    return { error: JSON.stringify(error) };
+  }
+};
+
 export const getAllProducts = async () => {
   try {
-    const result: TProductListItem[] | null = await db.product.findMany({
+    const result: any = await db.product.findMany({
       select: {
         id: true,
         name: true,
+        brandID: true,
+        categoryID: true,
+        optionSets: true,
         category: {
           select: {
             id: true,
@@ -156,6 +220,8 @@ export const getOneProduct = async (productID: string) => {
         id: true,
         name: true,
         desc: true,
+        brand: true,
+        brandID: true,
         images: true,
         price: true,
         salePrice: true,
@@ -171,17 +237,35 @@ export const getOneProduct = async (productID: string) => {
         },
       },
     });
-    if (!result) return { error: "Invalid Data!" };
 
-    const specifications = await generateSpecTable(result.specs as ProductSpec[]);
+    const newResult = {
+      ...result,
+      id: result?.id || "",
+      name: result?.name || "",
+      desc: result?.desc || "",
+      images: result?.images || [],
+      price: result?.price.toString() || "0",
+      salePrice: result?.salePrice?.toString() || "0",
+      specs: result?.specs || [],
+      specialFeatures: result?.specialFeatures || [],
+      isAvailable: result?.isAvailable || false,
+      optionSets: result?.optionSets || [],
+      category: {
+        id: result?.category.id || "",
+        parentID: result?.category.parentID || null,
+      },
+    };
+    if (!newResult) return { error: "Invalid Data!" };
+
+    const specifications = await generateSpecTable(newResult.specs as ProductSpec[]);
     // if (!specifications || specifications.length === 0) return { error: "Invalid Specs!" };
 
-    const pathArray: TPath[] | null = await getPathByCategoryID(result.category.id, result.category.parentID);
+    const pathArray: TPath[] | null = await getPathByCategoryID(newResult.category.id, newResult.category.parentID);
     if (!pathArray || pathArray.length === 0) return { error: "Invalid CatById!" };
 
     //eslint-disable-next-line
-    const { specs, ...others } = result;
-    const mergedResult: TProductPageInfo = {
+    const { specs, ...others } = newResult;
+    const mergedResult: any = {
       ...others,
       images: (others.images as { url: string; public_id: string }[]) || [],
 

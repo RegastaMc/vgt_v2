@@ -58,7 +58,7 @@ const Footer = () => {
   return (
     <footer className="flex flex-col border-t bg-white z-50 border-t-gray-300 w-full">
       <div className="flex-col storeContainer">
-        <div className="flex w-full items-center h-32 border-b border-b-gray-300">
+        {/* <div className="flex w-full items-center h-32 border-b border-b-gray-300">
           <Link href={"/"}>
             <Image alt="VGT Logo" src={"/images/vgtelogo.png"} width={125} height={40} />
           </Link>
@@ -76,7 +76,7 @@ const Footer = () => {
               className="absolute top-3.5 left-5 hidden sm:block"
             />
           </div>
-        </div>
+        </div> */}
         <section className="flex flex-col lg:flex-row items-start justify-between">
           <div className="lg:mb-0 mb-12 flex flex-col">
             <h3 className="text-lg text-gray-900 font-medium mt-9 mb-4">Contact Us</h3>

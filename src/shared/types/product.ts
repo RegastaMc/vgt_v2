@@ -61,7 +61,7 @@ export type TAddProductFormValues = {
   desc?: string;
   price: string;
   salePrice?: string;
-  images: (File | { url: string; publicId: string })[];
+  images: { url: string; public_id: string }[];
 
   categoryID: string;
   specifications: ProductSpec[];
@@ -74,6 +74,14 @@ export type TProductListItem = {
     id: string;
     name: string;
   };
+  price: number;
+  salePrice: number | null;
+  isAvailable: boolean;
+  brandID?: string;
+  specialFeatures: string[];
+  desc?: string;
+  images: { url: string; public_id: string }[];
+  specs: ProductSpec[];
 };
 export type TCartListItemDB = {
   id: string;

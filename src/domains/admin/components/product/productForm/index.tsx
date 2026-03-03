@@ -38,7 +38,10 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
   const [categoryList, setCategoryList] = useState<TDropDown[]>([categoryListFirstItem]);
   const [brandList, setBrandList] = useState<TDropDown[]>([brandListFirstItem]);
   const [selectedCategoryListIndex, setSelectedCategoryListIndex] = useState(0);
-  const [selectedBrandListIndex, setSelectedBrandListIndex] = useState(0);
+  const [selectedBrandListIndex, setSelectedBrandListIndex] = useState(
+    // props.brandID ? brandList.findIndex((item) => item.value === props.brandID) : 0,
+    0,
+  );
 
   const [categorySpecs, setCategorySpecs] = useState<SpecGroup[]>([]);
 
@@ -54,6 +57,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
       const result = await getAllBrands();
       if (result.res) {
         setBrandList(convertBrandsToDropdownList(result.res));
+      } else {
       }
     };
 
@@ -305,7 +309,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
                 if (info?.secure_url && info?.public_id) {
                   const newImage = {
                     url: info.secure_url,
-                    publicId: info.public_id,
+                    public_id: info.public_id,
                   };
 
                   onChange({
@@ -333,7 +337,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
                   ) : (
                     <Image
                       src={image.url}
-                      alt={image.publicId}
+                      alt={image.public_id}
                       width={100}
                       height={100}
                       className="w-28 h-32 object-cover rounded-md"
@@ -342,7 +346,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
                   <button
                     type="button"
                     className="absolute top-1 right-1 bg-white rounded-full p-1 text-red-500 hover:text-red-700"
-                    onClick={handleImageDelete(image instanceof File ? "" : image.publicId, {
+                    onClick={handleImageDelete(image instanceof File ? "" : image.public_id, {
                       value: props.images,
                       onChange: (imgs: any) => {
                         props.images = imgs;
