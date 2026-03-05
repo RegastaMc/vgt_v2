@@ -254,6 +254,19 @@ exports.Prisma.OrderItemScalarFieldEnum = {
   image: 'image'
 };
 
+exports.Prisma.MpesaTransactionScalarFieldEnum = {
+  id: 'id',
+  merchantRequestId: 'merchantRequestId',
+  checkoutRequestId: 'checkoutRequestId',
+  phoneNumber: 'phoneNumber',
+  amount: 'amount',
+  resultCode: 'resultCode',
+  resultDesc: 'resultDesc',
+  mpesaReceiptNumber: 'mpesaReceiptNumber',
+  transactionDate: 'transactionDate',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -336,7 +349,8 @@ exports.Prisma.ModelName = {
   ProductBanner: 'ProductBanner',
   Msg: 'Msg',
   Order: 'Order',
-  OrderItem: 'OrderItem'
+  OrderItem: 'OrderItem',
+  MpesaTransaction: 'MpesaTransaction'
 };
 
 /**

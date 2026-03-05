@@ -1,50 +1,77 @@
 import { NextResponse } from "next/server";
+import { getDarajaAccessToken } from "@/lib/mpesa";
+import { db } from "@/shared/lib/db";
 
 export async function POST(req: Request) {
-  const { phone, amount, orderId } = await req.json();
+  const { phone, amount } = await req.json();
 
-  if (!phone || !amount) {
-    return NextResponse.json({ message: "Missing fields" }, { status: 400 });
+  const cleanedNumber = phone.replace(/\D/g, "");
+  const formattedPhone = `254${cleanedNumber.slice(-9)}`;
+
+  console.log(`phone:`, formattedPhone);
+  console.log(`amount:`, amount);
+
+  if (!formattedPhone) {
+    return NextResponse.json({ message: "Invalid phone number" }, { status: 400 });
   }
 
-  // 🔐 Ideally fetch token dynamically
-  const accessToken = await getAccessToken();
+  if (!amount) {
+    return NextResponse.json({ message: "Amount is required" }, { status: 400 });
+  }
+
+  if (amount <= 0) {
+    return NextResponse.json({ message: "Amount must be greater than 0" }, { status: 400 });
+  }
+
+  const token = await getDarajaAccessToken();
+
+  const date = new Date();
+  const timestamp =
+    date.getFullYear() +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
+    ("0" + date.getDate()).slice(-2) +
+    ("0" + date.getHours()).slice(-2) +
+    ("0" + date.getMinutes()).slice(-2) +
+    ("0" + date.getSeconds()).slice(-2);
+
+  // const timestamp = new Date()
+  //   .toISOString()
+  //   .replace(/[-:.TZ]/g, "")
+  //   .slice(0, 14);
+
+  const password = Buffer.from(`${process.env.MPESA_SHORTCODE}${process.env.MPESA_PASSKEY}${timestamp}`).toString(
+    "base64",
+  );
 
   const response = await fetch("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       BusinessShortCode: process.env.MPESA_SHORTCODE,
-      Password: process.env.MPESA_PASSWORD,
-      Timestamp: process.env.MPESA_TIMESTAMP,
+      Password: password,
+      Timestamp: timestamp,
       TransactionType: "CustomerPayBillOnline",
       Amount: amount,
-      PartyA: phone,
+      PartyA: formattedPhone,
       PartyB: process.env.MPESA_SHORTCODE,
-      PhoneNumber: phone,
-      CallBackURL: `${process.env.BASE_URL}/api/payments/mpesa/callback`,
-      AccountReference: "Electricals order",
-      TransactionDesc: "Order Payment",
+      PhoneNumber: formattedPhone,
+      CallBackURL: process.env.MPESA_CALLBACK_URL,
+      AccountReference: "Payment",
+      TransactionDesc: "Payment via STK Push",
     }),
   });
 
   const data = await response.json();
-
-  return NextResponse.json(data);
-}
-
-async function getAccessToken() {
-  const res = await fetch("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials", {
-    headers: {
-      Authorization:
-        "Basic " +
-        Buffer.from(`${process.env.MPESA_CONSUMER_KEY}:${process.env.MPESA_CONSUMER_SECRET}`).toString("base64"),
+  await db.mpesaTransaction.create({
+    data: {
+      merchantRequestId: data.MerchantRequestID,
+      checkoutRequestId: data.CheckoutRequestID,
+      phoneNumber: formattedPhone,
+      amount: parseFloat(amount),
     },
   });
-
-  const data = await res.json();
-  return data.access_token;
+  return NextResponse.json(data);
 }

@@ -224,3 +224,16 @@ enum PaymentStatus {
   FAILED
   REFUNDED
 }
+
+model MpesaTransaction {
+  id                 String   @id @default(cuid())
+  merchantRequestId  String?
+  checkoutRequestId  String?
+  phoneNumber        String
+  amount             Float
+  resultCode         Int?
+  resultDesc         String?
+  mpesaReceiptNumber String?
+  transactionDate    String?
+  createdAt          DateTime @default(now())
+}
