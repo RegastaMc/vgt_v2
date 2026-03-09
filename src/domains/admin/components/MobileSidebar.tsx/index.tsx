@@ -4,12 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { name: "Dashboard", href: "/admin/id/dashboard" },
+  { name: "Analytics", href: "/admin/id/analytics" },
   { name: "Products", href: "/admin/id/products" },
   { name: "Categories", href: "/admin/id/categories" },
   { name: "Orders", href: "/admin/id/orders" },
   { name: "Customers", href: "/admin/id/customers" },
-  { name: "Analytics", href: "/admin/id/analytics" },
   { name: "Settings", href: "/admin/id/settings" },
 ];
 

@@ -5,14 +5,13 @@ import { usePathname } from "next/navigation";
 import { LayoutDashboard, Image, Package, Tags, ShoppingCart, Users, BarChart3, Settings, LogOut } from "lucide-react";
 
 const navItems = [
-  { name: "Dashboard", href: "/admin/id/dashboard", icon: LayoutDashboard },
+  { name: "Analytics", href: "/admin/id/analytics", icon: BarChart3 },
   { name: "Sliders", href: "/admin/id/sliders", icon: Image },
   { name: "Products", href: "/admin/id/products", icon: Package },
   { name: "Brands", href: "/admin/id/brands", icon: Package },
   { name: "Categories", href: "/admin/id/categories", icon: Tags },
   { name: "Orders", href: "/admin/id/orders", icon: ShoppingCart },
   { name: "Customers", href: "/admin/id/customers", icon: Users },
-  { name: "Analytics", href: "/admin/id/analytics", icon: BarChart3 },
   { name: "Settings", href: "/admin/id/settings", icon: Settings },
 ];
 

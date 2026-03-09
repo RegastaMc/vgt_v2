@@ -8,9 +8,6 @@ export async function POST(req: Request) {
   const cleanedNumber = phone.replace(/\D/g, "");
   const formattedPhone = `254${cleanedNumber.slice(-9)}`;
 
-  console.log(`phone:`, formattedPhone);
-  console.log(`amount:`, amount);
-
   if (!formattedPhone) {
     return NextResponse.json({ message: "Invalid phone number" }, { status: 400 });
   }

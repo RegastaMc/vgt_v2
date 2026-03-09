@@ -4,11 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { SlidesData } from "@/domains/store/homePage/constants/";
 import { ArrowIcon } from "@/shared/components/icons/svgIcons";
 import { cn } from "@/shared/utils/styling";
 
-export const HomeSlider = () => {
+export const HomeSlider = ({ SlidesData }: { SlidesData: any[] }) => {
   const [activeSlideNum, setActiveSlideNum] = useState(0);
   const touchPos = {
     start: 0,
@@ -104,7 +103,7 @@ export const HomeSlider = () => {
             )}
           >
             <Image
-              src={slide?.img}
+              src={JSON.parse(slide.imgUrl).url}
               alt=""
               fill
               className="hover:scale-105 object-cover transition-all duration-500"
@@ -123,7 +122,7 @@ export const HomeSlider = () => {
                 {slide.msg.desc && (
                   <span
                     className={cn(
-                      "text-gray-200  text-sm transition-[margin] duration-[1600ms]",
+                      "text-gray-500  text-sm transition-[margin] duration-[1600ms]",
                       index === activeSlideNum ? "mt-8" : "mt-14",
                     )}
                   >

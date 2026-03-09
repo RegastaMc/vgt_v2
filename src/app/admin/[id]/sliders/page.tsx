@@ -22,8 +22,6 @@ export default function SlidersPage() {
     fetchSliders();
   }, []);
 
-  console.log(`sliders:`, sliders);
-
   const handleSubmit = async ({ data }: { data: any }) => {
     try {
       const res = await fetch("/api/sliders", {
