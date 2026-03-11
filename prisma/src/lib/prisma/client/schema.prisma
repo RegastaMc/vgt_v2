@@ -234,6 +234,6 @@ model MpesaTransaction {
   resultCode         Int?
   resultDesc         String?
   mpesaReceiptNumber String?
-  transactionDate    String?
+  transactionDate    DateTime @default(now())
   createdAt          DateTime @default(now())
 }

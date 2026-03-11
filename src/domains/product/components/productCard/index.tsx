@@ -18,7 +18,7 @@ const ProductCard = ({
     <Link
       href={url}
       className={cn(
-        "bg-white rounded-xl p-2 transition-all duration-500 relative hover:drop-shadow-sm hover:[&_.imageWrapper>img:last-child]:opacity-100 hover:[&_.imageWrapper>img:last-child]:scale-[1.05]",
+        "bg-white rounded-xl p-1 transition-all duration-500 relative hover:drop-shadow-sm hover:[&_.imageWrapper>img:last-child]:opacity-100 hover:[&_.imageWrapper>img:last-child]:scale-[1.05]",
         staticWidth && "min-w-64",
       )}
     >
@@ -29,7 +29,7 @@ const ProductCard = ({
           </span>
         </div>
       )}
-      <div className="imageWrapper hover:border-gray-300 w-full h-[225px] block relative rounded-xl border border-gray-200 overflow-hidden transition-all duration-500">
+      <div className=" hover:border-gray-300 w-full  h-[240px] block relative rounded-xl border border-gray-200 overflow-hidden transition-all duration-500">
         <Image
           src={imgUrl[0]}
           alt={name}

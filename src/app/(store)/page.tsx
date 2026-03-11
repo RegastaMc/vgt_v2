@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+export const dynamic = "force-dynamic";
 import { Metadata } from "next";
 
 import {
@@ -29,11 +30,13 @@ export default async function Home() {
 
   return (
     <div className="w-full bg-gray-200">
-      <div className="storeContainer flex-col">
-        <div className="flex w-full mt-40">
+      <div className=" flex-col">
+        <div className="flex w-full px-2 sm:px-4 mt-40">
           <HomeSlider SlidesData={sliders} />
         </div>
-        <DynamicSection productsList={productsList} />
+        <div className="w-full px-2 sm:px-4 mt-10">
+          <DynamicSection productsList={productsList} />
+        </div>
       </div>
     </div>
   );

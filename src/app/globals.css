@@ -133,13 +133,15 @@ li {
 input {
   outline: none;
   font-family: inherit;
-  transition: border-color 1s, box-shadow 0.5s;
+  transition:
+    border-color 1s,
+    box-shadow 0.5s;
 }
 
 .storeContainer {
   width: 100%;
   display: flex;
-  margin: 0 auto;
+  margin: 0;
   padding: 0 48px;
 }
 

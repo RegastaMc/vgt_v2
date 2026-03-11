@@ -19018,7 +19018,7 @@ export namespace Prisma {
     resultCode: number | null
     resultDesc: string | null
     mpesaReceiptNumber: string | null
-    transactionDate: string | null
+    transactionDate: Date | null
     createdAt: Date | null
   }
 
@@ -19031,7 +19031,7 @@ export namespace Prisma {
     resultCode: number | null
     resultDesc: string | null
     mpesaReceiptNumber: string | null
-    transactionDate: string | null
+    transactionDate: Date | null
     createdAt: Date | null
   }
 
@@ -19195,7 +19195,7 @@ export namespace Prisma {
     resultCode: number | null
     resultDesc: string | null
     mpesaReceiptNumber: string | null
-    transactionDate: string | null
+    transactionDate: Date
     createdAt: Date
     _count: MpesaTransactionCountAggregateOutputType | null
     _avg: MpesaTransactionAvgAggregateOutputType | null
@@ -19284,7 +19284,7 @@ export namespace Prisma {
       resultCode: number | null
       resultDesc: string | null
       mpesaReceiptNumber: string | null
-      transactionDate: string | null
+      transactionDate: Date
       createdAt: Date
     }, ExtArgs["result"]["mpesaTransaction"]>
     composites: {}
@@ -19717,7 +19717,7 @@ export namespace Prisma {
     readonly resultCode: FieldRef<"MpesaTransaction", 'Int'>
     readonly resultDesc: FieldRef<"MpesaTransaction", 'String'>
     readonly mpesaReceiptNumber: FieldRef<"MpesaTransaction", 'String'>
-    readonly transactionDate: FieldRef<"MpesaTransaction", 'String'>
+    readonly transactionDate: FieldRef<"MpesaTransaction", 'DateTime'>
     readonly createdAt: FieldRef<"MpesaTransaction", 'DateTime'>
   }
     
@@ -21447,7 +21447,7 @@ export namespace Prisma {
     resultCode?: IntNullableFilter<"MpesaTransaction"> | number | null
     resultDesc?: StringNullableFilter<"MpesaTransaction"> | string | null
     mpesaReceiptNumber?: StringNullableFilter<"MpesaTransaction"> | string | null
-    transactionDate?: StringNullableFilter<"MpesaTransaction"> | string | null
+    transactionDate?: DateTimeFilter<"MpesaTransaction"> | Date | string
     createdAt?: DateTimeFilter<"MpesaTransaction"> | Date | string
   }
 
@@ -21460,7 +21460,7 @@ export namespace Prisma {
     resultCode?: SortOrderInput | SortOrder
     resultDesc?: SortOrderInput | SortOrder
     mpesaReceiptNumber?: SortOrderInput | SortOrder
-    transactionDate?: SortOrderInput | SortOrder
+    transactionDate?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -21476,7 +21476,7 @@ export namespace Prisma {
     resultCode?: IntNullableFilter<"MpesaTransaction"> | number | null
     resultDesc?: StringNullableFilter<"MpesaTransaction"> | string | null
     mpesaReceiptNumber?: StringNullableFilter<"MpesaTransaction"> | string | null
-    transactionDate?: StringNullableFilter<"MpesaTransaction"> | string | null
+    transactionDate?: DateTimeFilter<"MpesaTransaction"> | Date | string
     createdAt?: DateTimeFilter<"MpesaTransaction"> | Date | string
   }, "id">
 
@@ -21489,7 +21489,7 @@ export namespace Prisma {
     resultCode?: SortOrderInput | SortOrder
     resultDesc?: SortOrderInput | SortOrder
     mpesaReceiptNumber?: SortOrderInput | SortOrder
-    transactionDate?: SortOrderInput | SortOrder
+    transactionDate?: SortOrder
     createdAt?: SortOrder
     _count?: MpesaTransactionCountOrderByAggregateInput
     _avg?: MpesaTransactionAvgOrderByAggregateInput
@@ -21510,7 +21510,7 @@ export namespace Prisma {
     resultCode?: IntNullableWithAggregatesFilter<"MpesaTransaction"> | number | null
     resultDesc?: StringNullableWithAggregatesFilter<"MpesaTransaction"> | string | null
     mpesaReceiptNumber?: StringNullableWithAggregatesFilter<"MpesaTransaction"> | string | null
-    transactionDate?: StringNullableWithAggregatesFilter<"MpesaTransaction"> | string | null
+    transactionDate?: DateTimeWithAggregatesFilter<"MpesaTransaction"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"MpesaTransaction"> | Date | string
   }
 
@@ -22490,7 +22490,7 @@ export namespace Prisma {
     resultCode?: number | null
     resultDesc?: string | null
     mpesaReceiptNumber?: string | null
-    transactionDate?: string | null
+    transactionDate?: Date | string
     createdAt?: Date | string
   }
 
@@ -22503,7 +22503,7 @@ export namespace Prisma {
     resultCode?: number | null
     resultDesc?: string | null
     mpesaReceiptNumber?: string | null
-    transactionDate?: string | null
+    transactionDate?: Date | string
     createdAt?: Date | string
   }
 
@@ -22516,7 +22516,7 @@ export namespace Prisma {
     resultCode?: NullableIntFieldUpdateOperationsInput | number | null
     resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
     mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    transactionDate?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -22529,7 +22529,7 @@ export namespace Prisma {
     resultCode?: NullableIntFieldUpdateOperationsInput | number | null
     resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
     mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    transactionDate?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -22542,7 +22542,7 @@ export namespace Prisma {
     resultCode?: number | null
     resultDesc?: string | null
     mpesaReceiptNumber?: string | null
-    transactionDate?: string | null
+    transactionDate?: Date | string
     createdAt?: Date | string
   }
 
@@ -22555,7 +22555,7 @@ export namespace Prisma {
     resultCode?: NullableIntFieldUpdateOperationsInput | number | null
     resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
     mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    transactionDate?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -22568,7 +22568,7 @@ export namespace Prisma {
     resultCode?: NullableIntFieldUpdateOperationsInput | number | null
     resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
     mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    transactionDate?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

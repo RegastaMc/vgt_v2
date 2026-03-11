@@ -71,15 +71,15 @@ export const HomeSlider = ({ SlidesData }: { SlidesData: any[] }) => {
 
   return (
     <div className="w-full  h-[240px] sm:h-[500px] rounded-xl overflow-hidden relative hover:[&>.btnContainer]:opacity-100">
-      <div className="btnContainer absolute z-[2] left-7 top-0 bottom-0 flex justify-center items-center opacity-0 transition-all duration-500">
+      <div className=" absolute z-[2] left-7 top-0 bottom-0 flex justify-center items-center opacity-0 transition-all duration-500">
         <button
           onClick={() => handleSliding(activeSlideNum - 1)}
           className="rounded-full flex justify-center size-[50px] rotate-180 border-none cursor-pointer  bg-white/25"
         >
-          <ArrowIcon width={10} className="fill-none stroke-black" />
+          <ArrowIcon width={10} className="fill-orange-300 stroke-black" />
         </button>
       </div>
-      <div className="btnContainer absolute z-[2] right-7 top-0 bottom-0 flex justify-center items-center opacity-0 transition-all duration-500">
+      <div className=" absolute z-[2] right-7 top-0 bottom-0 flex justify-center items-center opacity-0 transition-all duration-500">
         <button
           onClick={() => handleSliding(activeSlideNum + 1)}
           className="rounded-full flex justify-center size-[50px] border-none cursor-pointer bg-white/25"
@@ -106,7 +106,7 @@ export const HomeSlider = ({ SlidesData }: { SlidesData: any[] }) => {
               src={JSON.parse(slide.imgUrl).url}
               alt=""
               fill
-              className="hover:scale-105 object-cover transition-all duration-500"
+              className="hover:scale-105 object-cover cursor-pointer transition-all duration-500"
               sizes="(max-width:1080px)"
               priority
               draggable={false}
