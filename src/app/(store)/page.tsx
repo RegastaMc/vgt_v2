@@ -24,7 +24,20 @@ export default async function Home() {
 
   const sliders = await db.productBanner.findMany({
     include: {
-      msg: true,
+      category: {
+        select: {
+          name: true,
+          id: true,
+          url: true,
+          parentCategory: {
+            select: {
+              name: true,
+              id: true,
+              url: true,
+            },
+          },
+        },
+      },
     },
   });
 

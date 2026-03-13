@@ -6,11 +6,12 @@ import { DndContext, closestCenter } from "@dnd-kit/core";
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import toast from "react-hot-toast";
+import { ProductBanner } from "prisma/src/lib/prisma/client";
 
 type SliderListProps = {
-  sliders?: TSlide[];
+  sliders?: ProductBanner[];
   setSliders?: (sliders: any[] | ((items: any[]) => any[])) => void;
-  onEdit: (slider: any) => void;
+  onEdit: (slider: any) => string | void;
   onDelete: (id: string) => Promise<void> | void;
 };
 
@@ -35,7 +36,7 @@ function SortableItem({
 
   let imgUrl = "";
   try {
-    imgUrl = slider?.imgUrl ? JSON.parse(slider.imgUrl).url : "";
+    imgUrl = slider?.imgUrl ? slider.imgUrl.url : "";
   } catch {
     imgUrl = "";
   }
@@ -75,22 +76,22 @@ function SortableItem({
           <img src={imgUrl} alt={slider?.msg?.title || "banner"} className="w-16 h-16 object-cover rounded" />
 
           <div>
-            <p className="font-medium">{slider?.msg?.title}</p>
-            <p className="text-sm text-gray-500">{slider?.url}</p>
+            <p className="text-xs text-gray-700 uppercase">Category Link</p>
+            <p className="text-sm text-gray-500">{slider?.category.name}</p>
           </div>
         </div>
 
         <div className="flex gap-2">
           <button
             onClick={() => onEdit(slider)}
-            className="text-sm px-3 py-1 border rounded cursor-pointer hover:bg-gray-100"
+            className="text-sm px-3 py-1 border rounded cursor-pointer  text-blue-600 hover:text-blue-400 border-blue-600 hover:bg-blue-300"
           >
             Edit
           </button>
 
           <button
             onClick={() => setShowConfirm(true)}
-            className="text-sm px-3 py-1 border border-red-500 text-red-600 rounded cursor-pointer hover:bg-red-50"
+            className="text-sm px-3 py-1 border border-red-500 text-red-600 rounded cursor-pointer hover:bg-red-300 hover:text-red-500"
           >
             Delete
           </button>
@@ -149,8 +150,8 @@ export default function SliderList({ sliders, setSliders, onEdit, onDelete }: Sl
         strategy={verticalListSortingStrategy}
       >
         <div className="space-y-3">
-          {sliders?.map((slider) => (
-            <SortableItem key={slider.id} slider={slider} onEdit={onEdit} onDelete={onDelete} />
+          {sliders?.map((slider, index) => (
+            <SortableItem key={index} slider={slider} onEdit={onEdit} onDelete={onDelete} />
           ))}
         </div>
       </SortableContext>

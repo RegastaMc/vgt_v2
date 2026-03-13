@@ -6,9 +6,12 @@ import { useEffect, useState } from "react";
 
 import { ArrowIcon } from "@/shared/components/icons/svgIcons";
 import { cn } from "@/shared/utils/styling";
+import { useRouter } from "next/navigation";
 
 export const HomeSlider = ({ SlidesData }: { SlidesData: any[] }) => {
   const [activeSlideNum, setActiveSlideNum] = useState(0);
+  const router = useRouter();
+
   const touchPos = {
     start: 0,
     end: 0,
@@ -79,7 +82,7 @@ export const HomeSlider = ({ SlidesData }: { SlidesData: any[] }) => {
           <ArrowIcon width={10} className="fill-orange-300 stroke-black" />
         </button>
       </div>
-      <div className=" absolute z-[2] right-7 top-0 bottom-0 flex justify-center items-center opacity-0 transition-all duration-500">
+      <div className=" absolute z-[9] right-7 top-0 bottom-0 flex justify-center items-center opacity-0 transition-all duration-500">
         <button
           onClick={() => handleSliding(activeSlideNum + 1)}
           className="rounded-full flex justify-center size-[50px] border-none cursor-pointer bg-white/25"
@@ -103,37 +106,37 @@ export const HomeSlider = ({ SlidesData }: { SlidesData: any[] }) => {
             )}
           >
             <Image
-              src={JSON.parse(slide.imgUrl).url}
+              src={slide.imgUrl.url}
               alt=""
               fill
               className="hover:scale-105 object-cover cursor-pointer transition-all duration-500"
               sizes="(max-width:1080px)"
               priority
               draggable={false}
+              onClick={() => router.push(`/list/${slide.category.parentCategory.url}/${slide.category.url}`)}
             />
-            {slide.msg && (
+            {slide.category && (
               <div
                 className={cn(
                   "flex invisible opacity-0 flex-col w-full absolute pt-0 sm:pt-[10%] items-center top-10 bottom-0 lg:w-[50%] text-gray-100 transition-all duration-1000",
                   index === activeSlideNum && "opacity-100 visible animate-newSlide",
                 )}
               >
-                <h2 className="sm:text-3xl text-lg font-light">{slide.msg.title}</h2>
-                {slide.msg.desc && (
+                {slide.category && (
                   <span
                     className={cn(
-                      "text-gray-500  text-sm transition-[margin] duration-[1600ms]",
+                      "text-gray-900  text-lg transition-[margin] duration-[1600ms]",
                       index === activeSlideNum ? "mt-8" : "mt-14",
                     )}
                   >
-                    {slide.msg.desc}
+                    {`Shop Now in ${slide.category.name}`}
                   </span>
                 )}
                 <Link
-                  href={slide.url}
+                  href={`/list/${slide.category.parentCategory.url}/${slide.category.url}`}
                   className="mt-6 sm:mt-20 text-gray-100 rounded-md text-sm sm:text:base sm:px-6 sm:py-3 px-4 py-2 bg-black/80 transition-all duration-300 hover:font-medium hover:text-gray-900 hover:bg-gray-100"
                 >
-                  {slide.msg.buttonText}
+                  Shop Now
                 </Link>
               </div>
             )}

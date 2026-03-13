@@ -69,6 +69,7 @@ const convertToJson = (categoriesTable: TCategory[]): TGroupJSON[] => {
 export const getAllCategories = async () => {
   try {
     const result: TGetAllCategories[] = await db.category.findMany({
+      orderBy: { name: "asc" },
       select: {
         id: true,
         parentID: true,

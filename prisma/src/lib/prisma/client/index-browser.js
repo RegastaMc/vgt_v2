@@ -213,15 +213,7 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.ProductBannerScalarFieldEnum = {
   id: 'id',
   imgUrl: 'imgUrl',
-  url: 'url',
-  alt: 'alt'
-};
-
-exports.Prisma.MsgScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  buttonText: 'buttonText',
-  bannerId: 'bannerId'
+  categoryID: 'categoryID'
 };
 
 exports.Prisma.OrderScalarFieldEnum = {
@@ -347,7 +339,6 @@ exports.Prisma.ModelName = {
   PageVisit: 'PageVisit',
   User: 'User',
   ProductBanner: 'ProductBanner',
-  Msg: 'Msg',
   Order: 'Order',
   OrderItem: 'OrderItem',
   MpesaTransaction: 'MpesaTransaction'

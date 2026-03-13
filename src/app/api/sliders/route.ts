@@ -4,22 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const data = await req.json();
 
-  console.log(`data:`, data);
-
   const savedBanner = await db.productBanner.create({
     data: {
       imgUrl: data.imgUrl, // JSON object
-      alt: data.alt,
-      url: data.link,
-
-      msg: data.msg
-        ? {
-            create: {
-              title: data.msg.title,
-              buttonText: data.msg.buttonText,
-            },
-          }
-        : undefined,
+      categoryID: data.categoryID,
     },
   });
 
@@ -29,7 +17,12 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   const sliders = await db.productBanner.findMany({
     include: {
-      msg: true,
+      category: {
+        select: {
+          name: true,
+          id: true,
+        },
+      },
     },
   });
   return NextResponse.json(sliders);

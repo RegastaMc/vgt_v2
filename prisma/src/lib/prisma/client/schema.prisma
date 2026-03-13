@@ -12,14 +12,17 @@ datasource db {
 }
 
 model Category {
-  id       String  @id @default(cuid()) @map("_id")
-  parentID String?
+  id             String     @id @default(cuid()) @map("_id")
+  parentID       String?
+  parentCategory Category?  @relation("CatHierarchy", fields: [parentID], references: [id], onDelete: Cascade)
+  subCategories  Category[] @relation("CatHierarchy")
 
   name               String
   url                String?
   Category_Option    Category_OptionSet[]
   Category_SpecGroup Category_SpecGroup[]
   products           Product[]
+  banner             ProductBanner[]
 }
 
 model Category_OptionSet {
@@ -154,19 +157,10 @@ model User {
 }
 
 model ProductBanner {
-  id     String @id @default(cuid())
-  imgUrl Json?
-  url    String
-  alt    String
-  msg    Msg?
-}
-
-model Msg {
-  id         String         @id @default(cuid())
-  title      String
-  buttonText String
-  banner     ProductBanner? @relation(fields: [bannerId], references: [id])
-  bannerId   String?        @unique
+  id         String    @id @default(cuid())
+  imgUrl     Json?
+  category   Category? @relation(fields: [categoryID], references: [id])
+  categoryID String?
 }
 
 model Order {

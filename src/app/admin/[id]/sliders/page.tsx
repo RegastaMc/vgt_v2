@@ -1,5 +1,8 @@
 "use client";
 
+import { getAllCategories } from "@/actions/category/category";
+import { Button } from "@/components/ui/button";
+import BannerModal from "@/domains/admin/components/admin/BannerModal";
 import SliderForm from "@/domains/admin/components/admin/SliderForm";
 import SliderList from "@/domains/admin/components/admin/SliderList";
 import { useEffect, useState } from "react";
@@ -8,6 +11,19 @@ import toast from "react-hot-toast";
 export default function SlidersPage() {
   const [sliders, setSliders] = useState<any[]>([]);
   const [editing, setEditing] = useState<any | null>(null);
+  const [open, setOpen] = useState(false);
+  const [selectedBanner, setSelectedBanner] = useState(null);
+  const [categories, setCategories] = useState<any[]>([]);
+
+  function openCreate() {
+    setSelectedBanner(null);
+    setOpen(true);
+  }
+
+  function openEdit(banner: any) {
+    setSelectedBanner(banner);
+    setOpen(true);
+  }
 
   useEffect(() => {
     async function fetchSliders() {
@@ -20,63 +36,36 @@ export default function SlidersPage() {
       }
     }
     fetchSliders();
+    getAllCategories().then((res) => {
+      if (res.res) setCategories(res.res);
+    });
   }, []);
 
-  const handleSubmit = async ({ data }: { data: any }) => {
-    try {
-      const res = await fetch("/api/sliders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const slider = await res.json();
-      setSliders([...sliders, slider]);
-
-      if (res.ok) {
-        setEditing(null);
-        toast.success("Slider created successfully");
-      }
-    } catch (error) {
-      toast.error("Failed to create slider");
-    }
-  };
-
   return (
-    <div className="grid lg:grid-cols-2 gap-8">
+    <div className="">
       <div>
-        <h2 className="text-lg font-semibold mb-4">{editing ? "Edit Slider" : "Create Slider"}</h2>
+        <div className="flex flex-col justify-between mb-6">
+          <div className="flex justify-between ">
+            <h1 className="text-2xl font-bold mb-6">Manage Banners</h1>
+            <div className="flex items-center cursor-pointer gap-4">
+              <Button variant="default" className="cursor-pointer" onClick={openCreate}>
+                + Create New Banner
+              </Button>
+            </div>
+          </div>
 
-        <SliderForm
-          defaultValues={
-            editing
-              ? {
-                  imgUrl: JSON.stringify(editing.imgUrl),
-                  link: editing.link,
-                  alt: editing.alt,
-                  title: editing.msg.title,
-                  buttonText: editing.msg.buttonText,
-                }
-              : undefined
-          }
-          onSubmit={(data) => {
-            if (editing) {
-              handleSubmit({ data: { ...data, id: editing.id } });
-            } else {
-              handleSubmit({ data });
-            }
-          }}
-        />
-      </div>
-
-      <div>
-        <h2 className="text-lg font-semibold mb-4">Existing Sliders</h2>
+          <hr className="border-t border-gray-300 w-full " />
+        </div>
+        <h2 className="text-lg font-semibold mb-4">Existing Banners</h2>
 
         <SliderList
           sliders={sliders}
           setSliders={setSliders}
-          onEdit={setEditing}
+          onEdit={(slider: any) => openEdit(slider)}
           onDelete={(id: string) => setSliders(sliders.filter((s) => s.id !== id))}
         />
+
+        <BannerModal open={open} setOpen={setOpen} banner={selectedBanner} categories={categories} />
       </div>
     </div>
   );
