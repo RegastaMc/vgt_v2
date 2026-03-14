@@ -70,7 +70,7 @@ export default function UserDropdown(props: UserDropdownProps) {
         <Dropdown
           isOpen={isOpen}
           onClose={closeDropdown}
-          className="absolute right-0  flex w-[200px] flex-col rounded-2xl   bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
+          className="absolute right-0  flex w-[200px] flex-col rounded-2xl   bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-900"
         >
           <ul className="flex flex-col gap-1  pb-3 border-b border-gray-200 dark:border-gray-800">
             <li>

@@ -42,7 +42,7 @@ const AdminProducts = () => {
     setIsLoading(true);
     const result = await addProduct(formValues);
     if (result.error) {
-      toast.error(result.error || "Failed to add product", { position: "top-center" });
+      toast.error("Failed to add product", { position: "top-center" });
       setIsLoading(false);
     }
     if (result.res) {
@@ -51,6 +51,7 @@ const AdminProducts = () => {
       setIsLoading(false);
       setShowProductWindow(false);
     }
+    if (!result.res) toast.error("Failed to add product", { position: "top-center" });
   };
 
   return (

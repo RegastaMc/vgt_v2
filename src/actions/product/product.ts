@@ -12,15 +12,16 @@ import {
 } from "@/shared/types/product";
 import { ProductSpec } from "prisma/src/lib/prisma/client";
 import cloudinary from "@/shared/lib/cloudinary";
+import { m } from "framer-motion";
 
 const ValidateAddProduct = z.object({
   name: z.string().min(3),
-  brandID: z.string().min(6),
+  brandID: z.string().min(2).optional(),
   specialFeatures: z.array(z.string()),
   desc: z.string().optional(),
   images: z.array(z.any()),
   isAvailable: z.boolean(),
-  categoryID: z.string().min(6),
+  categoryID: z.string().min(3),
   price: z.string().min(1),
   salePrice: z.string(),
   specifications: z.array(
@@ -37,11 +38,14 @@ const convertStringToFloat = (str: string) => {
 };
 
 export const addProduct = async (data: TAddProductFormValues) => {
-  if (!ValidateAddProduct.safeParse(data).success) return { error: "Invalid Data!" };
-
   try {
     const price = convertStringToFloat(data.price);
     const salePrice = data.salePrice ? convertStringToFloat(data.salePrice) : null;
+
+    const safedata = ValidateAddProduct.safeParse(data);
+    const flattenedErrors = safedata?.error?.flatten();
+
+    if (!safedata.success) return { error: flattenedErrors?.formErrors };
 
     if (data.brandID === "none") return { error: "Please select a brand!" };
     if (data.categoryID === "none") return { error: "Please select a category!" };
@@ -58,9 +62,7 @@ export const addProduct = async (data: TAddProductFormValues) => {
     if (salePrice !== null && salePrice >= price) {
       return { error: "Sale Price must be less than the original price" };
     }
-    if (!salePrice && salePrice !== 0) {
-      return { error: "Please enter a sale price or leave it empty" };
-    }
+
     if (!data.images || data.images.length === 0) {
       return { error: "Please upload at least one image" };
     }

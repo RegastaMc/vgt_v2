@@ -156,7 +156,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
       });
       const data = await res.json();
       if (res.ok) {
-        toast.success("Image deleted successfully", { position: "top-center", duration: 4000, icon: "🗑️" });
+        toast.success("Image deleted successfully", { position: "top-center", duration: 4000 });
         field.onChange(field.value.filter((img: any) => img.publicId !== publicId));
       } else {
         toast.error(data?.error || "Failed to delete image");
@@ -236,7 +236,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
           />
         </div>
         <div className="flex items-center  flex-col md:flex-row justify-between">
-          <span>Sale Price:</span>
+          <span>Discount Price:</span>
           <Input
             type="number"
             className="w-[200px]"

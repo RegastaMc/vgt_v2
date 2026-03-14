@@ -60,7 +60,7 @@ const Header = () => {
     >
       {/* Topmost header with admin dashboard link */}
 
-      {session?.user && session.user.role === "ADMIN" && (
+      {/* {session?.user && session.user.role === "ADMIN" && (
         <div className="py-2.5">
           <div className="flex bg-gray-500 justify-between items-center">
             <div className="flex items-center gap-3.5">
@@ -75,19 +75,19 @@ const Header = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       <div className="max-w-292.5 mx-auto px-4 sm:px-7.5 xl:px-0">
         {/* <!-- header top start --> */}
         <div
           className={`flex flex-col lg:flex-row gap-2 md:gap-2 items-end lg:items-center xl:justify-between ease-out duration-200 ${
-            stickyMenu ? "py-1" : "py-2"
+            stickyMenu ? "py-0.5" : "py-2"
           }`}
         >
           {/* <!-- header top left --> */}
-          <div className="xl:w-auto flex-col sm:flex-row w-full flex-1 flex sm:justify-between items-center  sm:gap-10">
+          <div className="xl:w-auto flex-col sm:flex-row w-full flex-1 flex sm:justify-between items-center  ">
             <Link className="shrink" href="/">
-              <Image src="/images/vgtelogo.png" alt="Logo" width={300} height={15} />
+              <Image src="/images/vgtelogo.png" alt="Logo" width={300} height={`${stickyMenu ? 5 : 15}`} />
             </Link>
 
             <div className=" w-full flex-1 flex-grow">
