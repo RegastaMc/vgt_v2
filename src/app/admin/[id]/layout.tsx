@@ -1,4 +1,4 @@
-import Sidebar from "@/domains/admin/components/Sidebar copy";
+import Sidebar from "@/domains/admin/components/Sidebar";
 import Topbar from "@/domains/admin/components/Topbar";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
