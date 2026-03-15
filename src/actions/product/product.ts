@@ -12,13 +12,12 @@ import {
 } from "@/shared/types/product";
 import { ProductSpec } from "prisma/src/lib/prisma/client";
 import cloudinary from "@/shared/lib/cloudinary";
-import { m } from "framer-motion";
 
 const ValidateAddProduct = z.object({
-  name: z.string().min(3),
+  name: z.coerce.string().min(3),
   brandID: z.string().min(2).optional(),
-  specialFeatures: z.array(z.string()),
-  desc: z.string().optional(),
+  specialFeatures: z.array(z.coerce.string()),
+  desc: z.coerce.string().optional(),
   images: z.array(z.any()),
   isAvailable: z.boolean(),
   categoryID: z.string().min(3),
@@ -168,6 +167,18 @@ export const getAllProducts = async () => {
           select: {
             id: true,
             name: true,
+            parentCategory: {
+              select: {
+                id: true,
+                name: true,
+                parentCategory: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
           },
         },
         price: true,

@@ -38,7 +38,17 @@ export default function DynamicSection({ productsList }: { productsList: TProduc
     <div>
       {" "}
       {validGroups.map((group) => (
-        <DynamicCards title={group.name} key={group.id} name={group.url as string} productsList={productsList} />
+        <DynamicCards
+          title={group.name}
+          key={group.id}
+          name={group.url as string}
+          productsList={productsList.filter(
+            (product) =>
+              product.category.id === group.id ||
+              product.category.parentCategory?.id === group.id ||
+              product.category.parentCategory?.parentCategory?.id === group.id,
+          )}
+        />
       ))}
     </div>
   );

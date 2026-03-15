@@ -73,6 +73,14 @@ export type TProductListItem = {
   category: {
     id: string;
     name: string;
+    parentCategory?: {
+      id: string;
+      name: string;
+      parentCategory?: {
+        id: string;
+        name: string;
+      };
+    };
   };
   price: number;
   salePrice: number | null;
