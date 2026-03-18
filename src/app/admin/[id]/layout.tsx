@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 import Sidebar from "@/domains/admin/components/Sidebar";
 import Topbar from "@/domains/admin/components/Topbar";
 

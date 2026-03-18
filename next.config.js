@@ -1,7 +1,4 @@
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   experimental: {
     optimizePackageImports: ["@prisma/client"],
   },

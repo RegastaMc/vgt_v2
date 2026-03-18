@@ -326,7 +326,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Web Projects\\React\\bitex\\prisma\\src\\lib\\prisma\\client",
+      "value": "D:\\Web Projects\\React\\vgt_electricals\\prisma\\src\\lib\\prisma\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -340,7 +340,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Web Projects\\React\\bitex\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Web Projects\\React\\vgt_electricals\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
