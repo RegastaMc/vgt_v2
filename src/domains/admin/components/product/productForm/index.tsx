@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 import { getAllBrands } from "@/actions/brands/brands";
 import { getAllCategoriesJSON } from "@/actions/category/category";
 import { getCategorySpecs } from "@/actions/category/specifications";
-import { PlusIcon } from "@/shared/components/icons/svgIcons";
 import DropDownList from "@/shared/components/UI/dropDown";
 import Input from "@/shared/components/UI/input";
 import { TBrand } from "@/shared/types";
@@ -18,6 +17,7 @@ import { TAddProductFormValues } from "@/shared/types/product";
 import { TDropDown } from "@/shared/types/uiElements";
 import { cn } from "@/shared/utils/styling";
 import { ProductSpec, SpecGroup } from "prisma/src/lib/prisma/client";
+import { Trash2, UploadCloud } from "lucide-react";
 
 const categoryListFirstItem: TDropDown = {
   text: "Select A Category....",
@@ -32,16 +32,28 @@ const brandListFirstItem: TDropDown = {
 type TProps = {
   formValues: TAddProductFormValues;
   onChange: (props: TAddProductFormValues) => void;
+  editMode?: boolean;
 };
 
-const ProductForm = ({ formValues: props, onChange }: TProps) => {
+const ProductForm = ({ formValues: props, onChange, editMode }: TProps) => {
   const [categoryList, setCategoryList] = useState<TDropDown[]>([categoryListFirstItem]);
   const [brandList, setBrandList] = useState<TDropDown[]>([brandListFirstItem]);
   const [selectedCategoryListIndex, setSelectedCategoryListIndex] = useState(0);
-  const [selectedBrandListIndex, setSelectedBrandListIndex] = useState(
-    // props.brandID ? brandList.findIndex((item) => item.value === props.brandID) : 0,
-    0,
-  );
+  const [selectedBrandListIndex, setSelectedBrandListIndex] = useState(0);
+  useEffect(() => {
+    if (props.brandID && brandList.length > 0) {
+      const index = brandList.findIndex((brand) => brand.value === props.brandID);
+
+      setSelectedBrandListIndex(index !== -1 ? index : 0);
+    }
+  }, [props.brandID, brandList]);
+
+  useEffect(() => {
+    if (props.categoryID && categoryList.length > 0) {
+      const index = categoryList.findIndex((category) => category.value === props.categoryID);
+      setSelectedCategoryListIndex(index !== -1 ? index : 0);
+    }
+  }, [props.categoryID, categoryList]);
 
   const [categorySpecs, setCategorySpecs] = useState<SpecGroup[]>([]);
 
@@ -146,6 +158,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
     newArray[index] = value;
     onChange({ ...props, specialFeatures: newArray });
   };
+
   const handleImageDelete = (publicId: string, field: any) => async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -168,10 +181,14 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
   };
 
   return (
-    <div className="flex flex-col overflow-y-scroll p-6 rounded-xl bg-white z-10 text-sm">
-      <div className="grid grid-col-4 gap-4">
-        <div className=" items-center flex flex-col md:flex-row justify-between">
-          <span>Name:</span>
+    <div className="w-full max-w-5xl mx-auto p-4 overflow-y-scroll md:p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-md">
+      {/* Header */}
+      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-700">{`${editMode ? "Edit" : "Add"} Product`}</h2>
+
+      {/* Form grid  */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className=" flex flex-col md:flex-row md:justify-between gap-2">
+          <span>Product Name:</span>
           <Input
             type="text"
             className="w-[200px]"
@@ -185,8 +202,8 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             }
           />
         </div>
-        <div className="flex items-center  flex-col md:flex-row justify-between">
-          <span>Short Descriptions:</span>
+        <div className="flex  flex-col md:flex-row justify-between">
+          <span>Short Description:</span>
           <Input
             type="text"
             className="w-[200px]"
@@ -200,7 +217,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             placeholder="Short Description..."
           />
         </div>
-        <div className="flex items-center  flex-col md:flex-row justify-between">
+        <div className="flex  flex-col md:flex-row justify-between">
           <span>Special Features:</span>
           <div className="flex flex-col gap-2 mr-6">
             <Input
@@ -220,7 +237,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             />
           </div>
         </div>
-        <div className="flex items-center  flex-col md:flex-row justify-between">
+        <div className="flex  flex-col md:flex-row justify-between">
           <span>Price:</span>
           <Input
             type="number"
@@ -235,7 +252,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             placeholder="Ksh.0.00"
           />
         </div>
-        <div className="flex items-center  flex-col md:flex-row justify-between">
+        <div className="flex   flex-col md:flex-row justify-between">
           <span>Discount Price:</span>
           <Input
             type="number"
@@ -250,8 +267,8 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             placeholder="Ksh.0.00"
           />
         </div>
-        <div className="flex items-center  flex-col md:flex-row justify-between">
-          <span>Is In Stock:</span>
+        <div className="flex  flex-col md:flex-row justify-between">
+          <span>Availability:</span>
           <div className="flex gap-2 items-center">
             <span
               className={cn(
@@ -277,7 +294,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             </span>
           </div>
         </div>
-        <div className="flex items-center  flex-col md:flex-row justify-between">
+        <div className="flex   flex-col md:flex-row justify-between">
           <span>Brand:</span>
           <DropDownList
             data={brandList}
@@ -286,7 +303,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
             onChange={handleBrandChange}
           />
         </div>
-        <div className="flex items-center  flex-col md:flex-row justify-between">
+        <div className="flex flex-col md:flex-row justify-between">
           <label htmlFor="images">Upload Product Images</label>
           <div className="flex flex-wrap gap-2 mt-2">
             <CldUploadWidget
@@ -297,7 +314,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
                 maxFiles: 5,
                 resourceType: "image",
                 clientAllowedFormats: ["png", "jpeg", "jpg", "webp"],
-                maxFileSize: 10000000,
+                maxFileSize: 15000000,
                 multiple: true,
               }}
               onSuccess={(result) => {
@@ -323,13 +340,14 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
                 <button
                   onClick={() => open()}
                   type="button"
-                  className=" bg-gray-500 hover:bg-gray-400 text-white py-2 px-4 rounded-md"
+                  className=" bg-gray-500 cursor-pointer flex flex-col items-center justify-center hover:opacity-90 text-white py-2 px-4 rounded-md"
                 >
-                  <PlusIcon width={20} /> Upload Images
+                  <UploadCloud width={20} />
+                  <span>Upload Images</span>
                 </button>
               )}
             </CldUploadWidget>
-            <div className="flex flex-wrap gap-1">
+            <div className="flex  gap-1">
               {props.images.map((image, index) => (
                 <div key={index} className="relative">
                   {image instanceof File ? (
@@ -345,16 +363,17 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
                   )}
                   <button
                     type="button"
-                    className="absolute top-1 right-1 bg-white rounded-full p-1 text-red-500 hover:text-red-700"
+                    className="absolute top-1 cursor-pointer right-1 bg-white rounded-full p-1 text-red-500 hover:text-red-700"
                     onClick={handleImageDelete(image instanceof File ? "" : image.public_id, {
                       value: props.images,
                       onChange: (imgs: any) => {
                         props.images = imgs;
-                        onChange({ ...props });
+
+                        onChange({ ...props, images: imgs });
                       },
                     })}
                   >
-                    x
+                    <Trash2 width={20} className="text-red-400 hover:text-red-700" />
                   </button>
                 </div>
               ))}
@@ -362,7 +381,7 @@ const ProductForm = ({ formValues: props, onChange }: TProps) => {
           </div>
         </div>
 
-        <div className="flex items-center  flex-col md:flex-row justify-between">
+        <div className="flex  flex-col md:flex-row justify-between">
           <span>Category</span>
           <DropDownList
             data={categoryList}

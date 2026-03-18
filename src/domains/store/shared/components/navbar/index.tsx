@@ -21,7 +21,11 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const [categories, setCategories] = useState<TGroupJSON[]>([]);
-  const { data: session } = useSession();
+
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -31,7 +35,6 @@ const Header = () => {
     fetchCategories();
   }, []);
 
-  // Sticky menu
   const handleStickyMenu = () => {
     if (window.scrollY >= 80) {
       setStickyMenu(true);
@@ -42,15 +45,22 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleStickyMenu);
+    window.addEventListener("resize", handleStickyMenu);
   });
 
-  const router = useRouter();
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
 
-  const options = [
-    { label: "All Categories", value: "0" },
-    { label: "All", value: "1" },
-    { label: "All", value: "2" },
-  ];
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <header
@@ -58,24 +68,46 @@ const Header = () => {
         stickyMenu && "shadow"
       }`}
     >
-      {/* Topmost header with admin dashboard link */}
-
-      {/* {session?.user && session.user.role === "ADMIN" && (
-        <div className="py-2.5">
-          <div className="flex bg-gray-500 justify-between items-center">
-            <div className="flex items-center gap-3.5">
-              <div className="flex items-center gap-1">
-                <span
-                  className="text-xs py-2 cursor-pointer ml-5 text-white uppercase"
-                  onClick={() => router.push("/admin/id/categories")}
-                >
-                  Go To Admin Dashboard
-                </span>
-              </div>
-            </div>
+      <div
+        className={`${stickyMenu && "hidden"} flex justify-end bg-gray-200 border-b border-gray-300  items-center py-1 px-4`}
+      >
+        <ul className="flex items-center gap-5.5">
+          <div className="flex items-center gap-1">
+            <span className="text-xs py-2 cursor-pointer ml-5 text-gray-700 uppercase">Visit our social platforms</span>
           </div>
-        </div>
-      )} */}
+          <ul className="flex items-center">
+            <li className="">
+              <div className="flex gap-4">
+                <Link
+                  href={"https://www.facebook.com"}
+                  className="fill-blue-500 hover:fill-gray-800 transition-all duration-200"
+                >
+                  <FacebookIcon width={20} strokeWidth={0} className="fill-inherit" />
+                </Link>
+
+                <Link
+                  href={"https://www.twitter.com"}
+                  className="fill-gray-700 hover:fill-gray-800 transition-all duration-200"
+                >
+                  <XIcon width={20} className="fill-inherit" />
+                </Link>
+                <Link
+                  href={"https://www.instagram.com"}
+                  className="fill-pink-400 hover:fill-gray-800 transition-all duration-200"
+                >
+                  <InstagramIcon width={20} strokeWidth={0} className="fill-inherit" />
+                </Link>
+                <Link
+                  href={"https://www.tiktok.com"}
+                  className="fill-black hover:fill-gray-800 transition-all duration-200"
+                >
+                  <TikTokIcon width={20} className="fill-inherit" />
+                </Link>
+              </div>
+            </li>
+          </ul>
+        </ul>
+      </div>
 
       <div className="max-w-292.5 mx-auto px-4 sm:px-7.5 xl:px-0">
         {/* <!-- header top start --> */}
@@ -85,17 +117,21 @@ const Header = () => {
           }`}
         >
           {/* <!-- header top left --> */}
-          <div className="xl:w-auto flex-col sm:flex-row w-full flex-1 flex sm:justify-between items-center  ">
-            <Link className="shrink" href="/">
-              <Image src="/images/vgtelogo.png" alt="Logo" width={300} height={`${stickyMenu ? 5 : 15}`} />
-            </Link>
+          <div className={`xl:w-auto flex-col sm:flex-row w-full flex-1 flex sm:justify-between items-center `}>
+            <div className={`${stickyMenu && windowSize.width < 500 ? "hidden" : ""}`}>
+              <Link className="shrink" href="/">
+                <Image src="/images/vgtelogo.png" alt="Logo" width={300} height={`${stickyMenu ? 5 : 15}`} />
+              </Link>
+            </div>
 
             <div className=" w-full flex-1 flex-grow">
               <form>
                 <div className="flex items-center flex-1">
                   {/* <CustomSelect options={options} /> */}
 
-                  <div className="relative max-w-83.25 flex-1 flex w-full">
+                  <div
+                    className={`${stickyMenu && windowSize.width < 500 ? "mt-3" : ""} relative max-w-83.25 flex-1 flex w-full`}
+                  >
                     {/* <!-- divider --> */}
                     <input
                       onChange={(e) => setSearchQuery(e.target.value)}
@@ -187,6 +223,7 @@ const Header = () => {
               <div className="flex items-center justify-end gap-1 md:gap-5">
                 <UserDropdown />
                 <NavBarShopping />
+                <NavBarFavorite />
               </div>
             </div>
           </div>
@@ -226,43 +263,7 @@ const Header = () => {
             {/* // <!--=== Main Nav End ===--> */}
 
             {/* // <!--=== Nav Right Start ===--> */}
-            <div className="hidden xl:block">
-              <ul className="flex items-center gap-5.5">
-                <ul className="flex items-center">
-                  <li className="hidden lg:block">
-                    <div className="flex gap-4 mb-6 xl:mb-0">
-                      <Link
-                        href={"https://www.facebook.com"}
-                        className="fill-blue-500 hover:fill-gray-800 transition-all duration-200"
-                      >
-                        <FacebookIcon width={20} strokeWidth={0} className="fill-inherit" />
-                      </Link>
 
-                      <Link
-                        href={"https://www.twitter.com"}
-                        className="fill-gray-700 hover:fill-gray-800 transition-all duration-200"
-                      >
-                        <XIcon width={20} className="fill-inherit" />
-                      </Link>
-                      <Link
-                        href={"https://www.instagram.com"}
-                        className="fill-pink-400 hover:fill-gray-800 transition-all duration-200"
-                      >
-                        <InstagramIcon width={20} strokeWidth={0} className="fill-inherit" />
-                      </Link>
-                      <Link
-                        href={"https://www.tiktok.com"}
-                        className="fill-black hover:fill-gray-800 transition-all duration-200"
-                      >
-                        <TikTokIcon width={20} className="fill-inherit" />
-                      </Link>
-                    </div>
-                  </li>
-                </ul>
-
-                <NavBarFavorite />
-              </ul>
-            </div>
             {/* <!--=== Nav Right End ===--> */}
           </div>
         </div>

@@ -107,7 +107,7 @@ const ProductListItem = ({ data, requestReload }: TProps) => {
       )}
       {showProductWindow && (
         <Popup
-          content={<ProductForm formValues={formValues} onChange={setFormValues} />}
+          content={<ProductForm formValues={formValues} onChange={setFormValues} editMode={true} />}
           isLoading={isLoading}
           onCancel={() => setShowProductWindow(false)}
           onClose={() => setShowProductWindow(false)}

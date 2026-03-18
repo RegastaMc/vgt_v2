@@ -19,7 +19,7 @@ const ProductCard = ({
       href={url}
       className={cn(
         "bg-white rounded-xl p-1 transition-all duration-500 relative hover:drop-shadow-sm hover:[&_.imageWrapper>img:last-child]:opacity-100 hover:[&_.imageWrapper>img:last-child]:scale-[1.05]",
-        staticWidth && "min-w-64",
+        staticWidth && "min-w-80",
       )}
     >
       {!isAvailable && (

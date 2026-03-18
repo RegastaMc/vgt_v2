@@ -22,8 +22,6 @@ export const getList = async (path: string, sortData: TListSort, filters: TFilte
 
   const categoryID = await findCategoryFromPathArray(pathArray);
 
-  console.log(`categoryID:`, categoryID);
-
   if (categoryID === "") return { error: "Invalid CatId Name" };
 
   const subCategories: TProductPath[] | null = await getSubCategories(categoryID);
@@ -37,7 +35,6 @@ export const getList = async (path: string, sortData: TListSort, filters: TFilte
   const result = await getProductsByCategories(allRelatedCategories, sortData, filters);
 
   if (!result) return { error: "Can't Find Product!" };
-  console.log(`products:`, result);
 
   return { products: result, subCategories: subCategories };
 };

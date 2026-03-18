@@ -11,6 +11,8 @@ import {
   TopSellingProductsList,
   WideCardRow,
 } from "@/domains/store/homePage/components";
+import ShopLayout from "@/domains/store/ShopLayout";
+
 import DynamicSection from "@/domains/store/homePage/sections/DynamicSection";
 import { getAllProducts } from "@/actions/product/product";
 import { db } from "@/shared/lib/db";
@@ -42,15 +44,17 @@ export default async function Home() {
   });
 
   return (
-    <div className="w-full bg-gray-200">
-      <div className=" flex-col">
-        <div className="flex w-full px-2 sm:px-4 mt-40 md:mt-20 ">
-          <HomeSlider SlidesData={sliders} />
-        </div>
-        <div className="w-full px-2 sm:px-4 mt-10">
-          <DynamicSection productsList={productsList} />
+    <ShopLayout>
+      <div className="w-full bg-gray-200">
+        <div className=" flex-col">
+          <div className="flex w-full px-2 sm:px-4 mt-40 md:mt-20 ">
+            <HomeSlider SlidesData={sliders} />
+          </div>
+          <div className="w-full px-2 sm:px-4 mt-10">
+            <DynamicSection productsList={productsList} />
+          </div>
         </div>
       </div>
-    </div>
+    </ShopLayout>
   );
 }
