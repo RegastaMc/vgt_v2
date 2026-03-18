@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-export const generateMetadata: Metadata = {
+export const metadata: Metadata = {
   title: "List",
   description: "List",
   openGraph: {
