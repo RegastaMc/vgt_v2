@@ -7,6 +7,7 @@ import Popup from "@/shared/components/UI/popup";
 import { TAddProductFormValues, TProductListItem } from "@/shared/types/product";
 import toast from "react-hot-toast";
 import ProductForm from "../productForm";
+import { SquarePen, Trash2Icon } from "lucide-react";
 
 type TProps = {
   data: TProductListItem;
@@ -86,12 +87,18 @@ const ProductListItem = ({ data, requestReload }: TProps) => {
       <span className={"styles.name"}>{data.name}</span>
       <span className={"styles.category"}>{data.category.name}</span>
       <div className="flex gap-2 justify-end">
-        <Button onClick={() => setShowProductWindow(true)} className="bg-blue-500 hover:bg-blue-600 text-white">
-          edit
-        </Button>
-        <Button className="bg-red-500 hover:bg-red-600 text-white" onClick={() => setShowDelete(true)}>
-          delete
-        </Button>
+        <button
+          onClick={() => setShowProductWindow(true)}
+          className=" hover:text-blue-800 p-2 bg-blue-200 cursor-pointer hover:bg-blue-300 rounded-sm text-blue-500"
+        >
+          <SquarePen />
+        </button>
+        <button
+          className="text-red-500 p-2 bg-red-200 cursor-pointer hover:bg-red-300 rounded-sm hover:text-red-600 "
+          onClick={() => setShowDelete(true)}
+        >
+          <Trash2Icon />
+        </button>
       </div>
       {showDelete && (
         <Popup

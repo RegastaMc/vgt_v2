@@ -27,7 +27,7 @@ const Popup = ({
   content,
 }: TProps) => {
   return (
-    <div className="fixed inset-0 top-10 overflow-hidden flex items-center justify-center">
+    <div className="fixed inset-0  overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 cursor-pointer bg-[rgba(0,0,0,0.2)] backdrop-blur-[2px]" onClick={onClose} />
       <div
         className={
@@ -44,7 +44,7 @@ const Popup = ({
           </div>
         )}
         {content}
-        <div className="flex pt-4 border-t text-sm border-gray-300 justify-center items-center gap-6">
+        <div className="flex pt-4 border-t text-sm border-gray-300 justify-center items-center gap-6 bottom-8">
           <Button className="w-[140px] bg-red-300 py-1.5" onClick={onCancel}>
             {cancelBtnText || "Cancel"}
           </Button>

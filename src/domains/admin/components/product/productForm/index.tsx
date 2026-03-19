@@ -40,6 +40,7 @@ const ProductForm = ({ formValues: props, onChange, editMode }: TProps) => {
   const [brandList, setBrandList] = useState<TDropDown[]>([brandListFirstItem]);
   const [selectedCategoryListIndex, setSelectedCategoryListIndex] = useState(0);
   const [selectedBrandListIndex, setSelectedBrandListIndex] = useState(0);
+
   useEffect(() => {
     if (props.brandID && brandList.length > 0) {
       const index = brandList.findIndex((brand) => brand.value === props.brandID);
@@ -186,7 +187,7 @@ const ProductForm = ({ formValues: props, onChange, editMode }: TProps) => {
       <h2 className="text-xl md:text-2xl font-semibold mb-4 text-gray-700">{`${editMode ? "Edit" : "Add"} Product`}</h2>
 
       {/* Form grid  */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1  gap-4">
         <div className=" flex flex-col md:flex-row md:justify-between gap-2">
           <span>Product Name:</span>
           <Input
